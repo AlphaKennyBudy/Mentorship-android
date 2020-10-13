@@ -5,45 +5,72 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-
+    List<Vacancy> vacancies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         configureBottomNavigation();
-        createRecyclerPopularJobs();
-        createRecyclerNearbyJobs();
+
+        fetchData();
     }
 
+    private void fetchData() {
+        NetworkService
+                .getInstance()
+                .getJSONApi()
+                .getAllVacancies()
+                .enqueue(new Callback<List<Vacancy>>() {
+                    @Override
+                    public void onResponse(Call<List<Vacancy>> call, Response<List<Vacancy>> response) {
+                        vacancies = response.body();
+                        createRecyclerPopularJobs();
+                        createRecyclerNearbyJobs();
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Vacancy>> call, Throwable t) {
+                        Log.d("error", Objects.requireNonNull(t.getMessage()));
+                    }
+                });
+    }
     private void createRecyclerPopularJobs() {
-        ArrayList<Job> dummyJobsContent = generateDummyJobs();
-        ArrayList<Integer> dummyImages = generateDummyImages(dummyJobsContent.size(), 0);
-        createRecycler(R.id.rv_popular_jobs, LinearLayoutManager.HORIZONTAL, dummyJobsContent,
+        if (vacancies == null || vacancies.isEmpty()) return;
+        ArrayList<Integer> dummyImages = generateDummyImages(vacancies.size(), 0);
+        createRecycler(R.id.rv_popular_jobs, LinearLayoutManager.HORIZONTAL, vacancies,
                         dummyImages, R.layout.popular_job_list_item);
     }
 
     private void createRecyclerNearbyJobs() {
-        ArrayList<Job> dummyJobsContent = generateDummyJobs();
-        ArrayList<Integer> dummyImages = generateDummyImages(dummyJobsContent.size(), 1);
-        createRecycler(R.id.rv_nearby_jobs, LinearLayoutManager.VERTICAL, dummyJobsContent,
+        if (vacancies == null || vacancies.isEmpty()) return;
+        ArrayList<Integer> dummyImages = generateDummyImages(vacancies.size(), 1);
+        createRecycler(R.id.rv_nearby_jobs, LinearLayoutManager.VERTICAL, vacancies,
                 dummyImages, R.layout.nearby_job_list_item);
     }
 
-    private void createRecycler(int viewId, int orientation, ArrayList<Job> jobs,
+    private void createRecycler(int viewId, int orientation, List<Vacancy> vacancies,
                                 ArrayList<Integer> images, int layoutId) {
-        RecyclerView popularJobsList = getRecyclerById(viewId, orientation);
-        JobsAdapter jobsAdapter = new JobsAdapter(layoutId, images, jobs);
-        popularJobsList.setAdapter(jobsAdapter);
+        RecyclerView jobsList = getRecyclerById(viewId, orientation);
+        JobsAdapter jobsAdapter = new JobsAdapter(layoutId, images, vacancies);
+        jobsList.setAdapter(jobsAdapter);
     }
 
     private RecyclerView getRecyclerById(int viewId, int orientation) {
@@ -54,18 +81,9 @@ public class MainActivity extends AppCompatActivity {
         return jobsList;
     }
 
-    private ArrayList<Job> generateDummyJobs() {
-        return new ArrayList<>(Arrays.asList(
-            new Job("Product Designer", "Full time",50),
-            new Job("Android Developer", "Part time",69),
-            new Job("Web Developer", "Full time",89),
-            new Job("Data Scientist", "Full time",300))
-        );
-    }
-
-    private ArrayList<Integer> generateDummyImages(int dummyJobsSize, int imageType) {
+    private ArrayList<Integer> generateDummyImages(int vacanciesSize, int imageType) {
         ArrayList<Integer> dummyImages = new ArrayList<>();
-        for (int i = 0; i < dummyJobsSize; i++) {
+        for (int i = 0; i < vacanciesSize; i++) {
             if (imageType == 0) {
                 dummyImages.add(R.drawable.dummy_img);
             } else if (imageType == 1) {

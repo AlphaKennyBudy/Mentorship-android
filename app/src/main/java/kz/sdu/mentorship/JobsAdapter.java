@@ -5,7 +5,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,16 +12,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.JobViewHolder> {
     int layoutId;
     ArrayList<Integer> images;
-    ArrayList<Job> jobs;
+    List<Vacancy> vacancies;
 
-    public JobsAdapter(int layoutId, ArrayList<Integer> images, ArrayList<Job> jobs) {
+    public JobsAdapter(int layoutId, ArrayList<Integer> images, List<Vacancy> vacancies) {
         this.layoutId = layoutId;
         this.images = images;
-        this.jobs = jobs;
+        this.vacancies = vacancies;
     }
 
     @NonNull
@@ -42,7 +42,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.JobViewHolder>
 
     @Override
     public int getItemCount() {
-        return jobs.size();
+        return vacancies.size();
     }
 
     class JobViewHolder extends RecyclerView.ViewHolder {
@@ -63,12 +63,12 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.JobViewHolder>
         void bind(int position) {
             imageView.setImageResource(images.get(position));
 
-            Job job = jobs.get(position);
-            jobNameView.setText(job.getJobName());
-            dutyTypeView.setText(job.getDutyType());
+            Vacancy vacancy = vacancies.get(position);
+            jobNameView.setText(vacancy.getJobName());
+            dutyTypeView.setText(vacancy.getDutyType());
 
             @SuppressLint("DefaultLocale")
-            String formattedPriceText = String.format("$%d/h", job.getSalary());
+            String formattedPriceText = String.format("$%d/h", vacancy.getSalary());
             salaryView.setText(formattedPriceText);
         }
     }
