@@ -25,16 +25,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createRecyclerPopularJobs() {
-        RecyclerView popularJobsList = getRecycler(R.id.rv_popular_jobs, LinearLayoutManager.HORIZONTAL);
-
         ArrayList<Job> dummyJobsContent = generateDummyJobs();
-        ArrayList<Integer> dummyImages = generateDummyImages(dummyJobsContent.size());
-        JobsAdapter jobsAdapter = new JobsAdapter(R.layout.popular_job_list_item, dummyImages, dummyJobsContent);
+        ArrayList<Integer> dummyImages = generateDummyImages(dummyJobsContent.size(), 0);
+        createRecycler(R.id.rv_popular_jobs, LinearLayoutManager.HORIZONTAL, dummyJobsContent,
+                        dummyImages, R.layout.popular_job_list_item);
+    }
 
+    private void createRecycler(int viewId, int orientation, ArrayList<Job> jobs,
+                                ArrayList<Integer> images, int layoutId) {
+        RecyclerView popularJobsList = getRecyclerById(viewId, orientation);
+        JobsAdapter jobsAdapter = new JobsAdapter(layoutId, images, jobs);
         popularJobsList.setAdapter(jobsAdapter);
     }
 
-    private RecyclerView getRecycler(int viewId, int orientation) {
+    private RecyclerView getRecyclerById(int viewId, int orientation) {
         RecyclerView jobsList = findViewById(viewId);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,  orientation, false);
         jobsList.setLayoutManager(layoutManager);
@@ -51,10 +55,14 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-    private ArrayList<Integer> generateDummyImages(int dummyJobsSize) {
+    private ArrayList<Integer> generateDummyImages(int dummyJobsSize, int imageType) {
         ArrayList<Integer> dummyImages = new ArrayList<>();
         for (int i = 0; i < dummyJobsSize; i++) {
-            dummyImages.add(R.drawable.dummy_img);
+            if (imageType == 0) {
+                dummyImages.add(R.drawable.dummy_img);
+            } else if (imageType == 1) {
+                dummyImages.add(R.drawable.dummy_img_2);
+            }
         }
         return dummyImages;
     }
