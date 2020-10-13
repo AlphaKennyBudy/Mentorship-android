@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         configureBottomNavigation();
         createRecyclerPopularJobs();
+        createRecyclerNearbyJobs();
     }
 
     private void createRecyclerPopularJobs() {
@@ -29,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Integer> dummyImages = generateDummyImages(dummyJobsContent.size(), 0);
         createRecycler(R.id.rv_popular_jobs, LinearLayoutManager.HORIZONTAL, dummyJobsContent,
                         dummyImages, R.layout.popular_job_list_item);
+    }
+
+    private void createRecyclerNearbyJobs() {
+        ArrayList<Job> dummyJobsContent = generateDummyJobs();
+        ArrayList<Integer> dummyImages = generateDummyImages(dummyJobsContent.size(), 1);
+        createRecycler(R.id.rv_nearby_jobs, LinearLayoutManager.VERTICAL, dummyJobsContent,
+                dummyImages, R.layout.nearby_job_list_item);
     }
 
     private void createRecycler(int viewId, int orientation, ArrayList<Job> jobs,

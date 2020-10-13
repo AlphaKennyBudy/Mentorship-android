@@ -52,13 +52,31 @@
             android:textSize="@dimen/font_large"/>
         
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_jobs"
+            android:id="@+id/rv_popular_jobs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_popular_jobs"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="20dp"/>
 
+        <TextView
+            android:id="@+id/text_nearby_jobs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_bold"
+            android:layout_below="@id/rv_popular_jobs"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/nearby_jobs"
+            android:textSize="@dimen/font_large"/>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_nearby_jobs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/text_nearby_jobs"/>
     </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
