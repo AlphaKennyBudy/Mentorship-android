@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="font_larger">24sp</dimen>
-    
+    <dimen name="font_large">20sp</dimen>
+    <dimen name="font_normal">14sp</dimen>
+    <dimen name="font_small">12sp</dimen>
+
+    <dimen name="corner_radius_larger">28dp</dimen>
+    <dimen name="corner_radius_large">20dp</dimen>
     <dimen name="corner_radius_normal">14dp</dimen>
+    <dimen name="corner_radius_small">5dp</dimen>
 </resources>
