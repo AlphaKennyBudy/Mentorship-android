@@ -2,17 +2,11 @@ package kz.sdu.mentorship;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.SearchView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -21,28 +15,31 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView popularJobsList;
-    private JobsAdapter jobsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         configureBottomNavigation();
-        configureRecyclerPopularJobs();
+        createRecyclerPopularJobs();
     }
 
-    private void configureRecyclerPopularJobs() {
-        popularJobsList = findViewById(R.id.rv_jobs);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        popularJobsList.setLayoutManager(layoutManager);
-        popularJobsList.setHasFixedSize(true);
+    private void createRecyclerPopularJobs() {
+        RecyclerView popularJobsList = getRecycler(R.id.rv_popular_jobs, LinearLayoutManager.HORIZONTAL);
 
         ArrayList<Job> dummyJobsContent = generateDummyJobs();
         ArrayList<Integer> dummyImages = generateDummyImages(dummyJobsContent.size());
-        jobsAdapter = new JobsAdapter(dummyImages, dummyJobsContent);
+        JobsAdapter jobsAdapter = new JobsAdapter(R.layout.popular_job_list_item, dummyImages, dummyJobsContent);
 
         popularJobsList.setAdapter(jobsAdapter);
+    }
+
+    private RecyclerView getRecycler(int viewId, int orientation) {
+        RecyclerView jobsList = findViewById(viewId);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this,  orientation, false);
+        jobsList.setLayoutManager(layoutManager);
+        jobsList.setHasFixedSize(true);
+        return jobsList;
     }
 
     private ArrayList<Job> generateDummyJobs() {

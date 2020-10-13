@@ -15,10 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.JobViewHolder> {
+    int layoutId;
     ArrayList<Integer> images;
     ArrayList<Job> jobs;
 
-    public JobsAdapter(ArrayList<Integer> images, ArrayList<Job> jobs) {
+    public JobsAdapter(int layoutId, ArrayList<Integer> images, ArrayList<Job> jobs) {
+        this.layoutId = layoutId;
         this.images = images;
         this.jobs = jobs;
     }
@@ -28,7 +30,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.JobViewHolder>
     public JobsAdapter.JobViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.job_list_item, parent, false);
+        View view = inflater.inflate(layoutId, parent, false);
 
         return new JobViewHolder(view);
     }
