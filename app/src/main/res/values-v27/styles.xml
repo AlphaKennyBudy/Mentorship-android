@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/backgroundColor</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:textViewStyle">@style/Custom.TextView</item>
         <item name="bottomNavigationStyle">@style/Custom.BottomNavigationView</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>

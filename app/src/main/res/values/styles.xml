@@ -5,9 +5,16 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:textViewStyle">@style/Custom.TextView</item>
         <item name="bottomNavigationStyle">@style/Custom.BottomNavigationView</item>
     </style>
     
+    <style name="Custom.TextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/lato_regular</item>
+    </style>
+
     <style name="Custom.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
         <item name="materialThemeOverlay">@style/Custom.BottomNavigationView.Colors</item>
     </style>
