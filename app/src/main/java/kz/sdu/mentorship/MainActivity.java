@@ -19,11 +19,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         configureBottomNavigation();
-        configureSearchBar();
-    }
-
-    private void configureSearchBar() {
-
     }
 
     private void configureBottomNavigation() {
