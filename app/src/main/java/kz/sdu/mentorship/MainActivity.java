@@ -2,10 +2,13 @@ package kz.sdu.mentorship;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.SearchView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -16,6 +19,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         configureBottomNavigation();
+        configureSearchBar();
+    }
+
+    private void configureSearchBar() {
+
     }
 
     private void configureBottomNavigation() {

@@ -7,6 +7,38 @@
     android:background="@color/backgroundColor"
     tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_navigation"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/text_find_jobs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/find_your_best_jobs"
+            android:fontFamily="@font/lato_bold"
+            android:layout_marginTop="20dp"
+            android:textSize="@dimen/font_larger"/>
+
+        <SearchView
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            android:layout_below="@id/text_find_jobs"
+            android:layout_marginTop="15dp"
+            android:paddingStart="-8dp"
+            android:background="@drawable/custom_search_bar"
+            android:queryHint="@string/what_are_you_looking_for"
+            android:queryBackground="@null"
+            tools:ignore="RtlSymmetry" />
+
+
+    </RelativeLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
