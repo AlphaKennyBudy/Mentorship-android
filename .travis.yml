@@ -1,30 +1,34 @@
 sudo: false
-
 language: android
 jdk: oraclejdk8
-
 android:
   components:
-  - platform-tools
-  - tools
-  - build-tools-23.0.3
-  - android-23
-
+    - platform-tools
+    - tools
+    - build-tools-23.0.3
+    - android-23
 before_install:
-- chmod +x gradlew
-
+  - chmod +x gradlew
 script:
-- "./gradlew clean build connectedAndroidTest -PdisablePreDex --stacktrace"
-
+  - './gradlew clean build connectedAndroidTest -PdisablePreDex --stacktrace'
 notifications:
   email: true
-
 before_cache:
-- rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
-
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 cache:
   directories:
-  - "$HOME/.m2"
-  - "$HOME/.gradle"
-  - "$HOME/.gradle/caches/"
-  - "$HOME/.gradle/wrapper/"
+    - '$HOME/.m2'
+    - '$HOME/.gradle'
+    - '$HOME/.gradle/caches/'
+    - '$HOME/.gradle/wrapper/'
+deploy:
+  provider: releases
+  api_key:
+    secure: xV8uP9SC1DoNawuZjenSwSEpUrRn04uGAFWD0Zb4L08vDu4eLRCc6AB1uLDvpn5hPnXPa2HbYG3P1YuuwUw0enlVT0v6HHN96dL5N+zK7EwlGiNevWlvjFNXgzR/ayJ4sCzErd0v+191Qbb+jk0HkGOgo9ZAYIDMZvmzPrxD9LhDjlnnaVsjq2vZXpU0A4ogWKnqSX+z1ThePjudq1UQ0YduJsVFQ9WyP0qrgv9E7ZBSn0zMj+4E8uLx64AKmSdAFpwafBZbntgONC4tmTpc/XuJ4wr3rqHyHODGWL7M2e1vq7a69HlMq9KROVouYYdnRczMB84qnw0lgxHz/xEI74vUSx7uyZ64Zzxhz44oT478SjeQ1WtL0qny7b7oaVG/lsm0QXeWLqMFjXrfUEphT7pYPkdDsa0aWTZ3MpuLbTIywQm+Er8c13DnmtEzyYc8S69Se3lm9Nt/pmoPFayxp4u/3PmDRE6Ij9/A6ruwjb2ipnDTQzyE1zvFP4/pD5hH6yiDZ20esi9AZyTBP3gVMJDSiZz2NF32FfnZ/HoUMU30Mu6IDHlmLGtQGz3Z7S4qY9+LjCg3PIQhClCRUNNCpE58GE3I9lOJa4ojRn1k15fZnUewU8vwQbhAufPztzmBvfsWCPYAZWN8+7F4j8zllv/xdiBEJYdTPXoxLR3EOPU=
+  file: yourapp/build/outputs/apk/yourapp*release*.apk
+  on:
+    branch: master
+    repo: AlphaKennyBudy/Mentorship-android
+  skip_cleanup: 'true'
+  after_success:
+    - sh set_tags.sh
