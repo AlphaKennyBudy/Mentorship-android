@@ -6,7 +6,7 @@
     android:layout_marginEnd="20dp"
     android:layout_marginBottom="20dp"
     android:background="@drawable/custom_normal_rounded_card"
-    android:foreground="@drawable/custom_ripple_effect">
+    android:foreground="@drawable/custom_ripple_effect_normal">
 
     <ImageView
         android:id="@+id/card_image"
