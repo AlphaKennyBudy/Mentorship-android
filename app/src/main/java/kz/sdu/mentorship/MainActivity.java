@@ -22,7 +22,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-    List<Vacancy> vacancies;
+    public static List<Vacancy> vacancies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
