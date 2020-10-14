@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:background="@color/backgroundColor">
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
@@ -92,7 +92,7 @@
                     android:focusable="true"
                     android:layout_below="@id/text_nearby_jobs"/>
             </RelativeLayout>
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
         <include
             layout="@layout/bottom_navbar"/>
