@@ -12,4 +12,5 @@
     <color name="mediumGrey">#606060</color>
     <color name="darkGrey">#272727</color>
     <color name="whiteSmoke">#F5F5F5</color>
+    <color name="transparentBlack">#66000000</color>
 </resources>
