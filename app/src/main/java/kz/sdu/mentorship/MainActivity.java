@@ -2,6 +2,7 @@ package kz.sdu.mentorship;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import retrofit2.Response;
 public class MainActivity extends NavigationBarActivity implements JobsAdapter.OnJobListener {
     public static List<Vacancy> vacancies;
     private RecyclerView jobsList;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, this, R.layout.activity_main);
@@ -28,6 +30,14 @@ public class MainActivity extends NavigationBarActivity implements JobsAdapter.O
             createRecyclerPopularJobs();
             createRecyclerNearbyJobs();
         }
+        setSwipeRefresh();
+    }
+
+    @Override
+    public void onJobClick(int position) {
+        Intent intent = new Intent(this, VacancyDetailsActivity.class);
+        intent.putExtra(VacancyDetailsActivity.EXTRA_INTENT, position);
+        startActivity(intent);
     }
 
     private void fetchData() {
@@ -41,6 +51,7 @@ public class MainActivity extends NavigationBarActivity implements JobsAdapter.O
                         vacancies = response.body();
                         createRecyclerPopularJobs();
                         createRecyclerNearbyJobs();
+                        swipeRefreshLayout.setRefreshing(false);
                     }
 
                     @Override
@@ -90,10 +101,14 @@ public class MainActivity extends NavigationBarActivity implements JobsAdapter.O
         return dummyImages;
     }
 
-    @Override
-    public void onJobClick(int position) {
-        Intent intent = new Intent(this, VacancyDetailsActivity.class);
-        intent.putExtra(VacancyDetailsActivity.EXTRA_INTENT, position);
-        startActivity(intent);
+    private void setSwipeRefresh() {
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                vacancies = null;
+                fetchData();
+            }
+        });
     }
 }
