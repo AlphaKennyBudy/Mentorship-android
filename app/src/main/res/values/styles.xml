@@ -8,6 +8,8 @@
 
         <item name="android:textViewStyle">@style/Custom.TextView</item>
         <item name="bottomNavigationStyle">@style/Custom.BottomNavigationView</item>
+        <item name="textAppearanceButton">@style/Custom.Button.TextAppearance</item>
+        <item name="shapeAppearanceSmallComponent">@style/Custom.Button.Corners.Normal</item>
     </style>
     
     <style name="Custom.TextView" parent="Widget.MaterialComponents.TextView">
@@ -22,6 +24,30 @@
     <style name="Custom.BottomNavigationView.Colors" parent="">
         <item name="colorPrimary">@color/white</item>
         <item name="colorOnPrimary">@color/colorPrimary</item>
+    </style>
+
+    <style name="Custom.Button.IconOnly" parent="Widget.MaterialComponents.Button">
+        <item name="iconPadding">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:minWidth">16dp</item>
+        <item name="android:minHeight">16dp</item>
+        <item name="shapeAppearance">@style/Custom.Button.Corners.Small</item>
+    </style>
+
+    <style name="Custom.Button.TextAppearance" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/lato_bold</item>
+        <item name="android:fontFamily">@font/lato_bold</item>
+    </style>
+
+    <style name="Custom.Button.Corners.Normal" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">@dimen/corner_radius_normal</item>
+    </style>
+
+    <style name="Custom.Button.Corners.Small" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">@dimen/corner_radius_small</item>
     </style>
 
 </resources>

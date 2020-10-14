@@ -5,8 +5,12 @@
     <dimen name="font_normal">14sp</dimen>
     <dimen name="font_small">12sp</dimen>
 
+    <dimen name="corner_radius_huge">38dp</dimen>
     <dimen name="corner_radius_larger">28dp</dimen>
     <dimen name="corner_radius_large">20dp</dimen>
     <dimen name="corner_radius_normal">14dp</dimen>
-    <dimen name="corner_radius_small">5dp</dimen>
+    <dimen name="corner_radius_small">8dp</dimen>
+    <dimen name="corner_radius_tiny">5dp</dimen>
+
+    <dimen name="margin_default">20dp</dimen>
 </resources>

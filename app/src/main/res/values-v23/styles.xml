@@ -9,6 +9,8 @@
 
         <item name="android:textViewStyle">@style/Custom.TextView</item>
         <item name="bottomNavigationStyle">@style/Custom.BottomNavigationView</item>
+        <item name="textAppearanceButton">@style/Custom.Button.TextAppearance</item>
+        <item name="shapeAppearanceSmallComponent">@style/Custom.Button.Corners.Normal</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>
