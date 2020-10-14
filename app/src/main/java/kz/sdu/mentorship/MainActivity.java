@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.net.NetworkInfo;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,7 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements JobsAdapter.OnJobListener {
     public static List<Vacancy> vacancies;
 
     @Override
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private void createRecycler(int viewId, int orientation, List<Vacancy> vacancies,
                                 ArrayList<Integer> images, int layoutId) {
         RecyclerView jobsList = getRecyclerById(viewId, orientation);
-        JobsAdapter jobsAdapter = new JobsAdapter(layoutId, images, vacancies);
+        JobsAdapter jobsAdapter = new JobsAdapter(layoutId, images, vacancies, this);
         jobsList.setAdapter(jobsAdapter);
     }
 
@@ -116,5 +115,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         );
+    }
+
+    @Override
+    public void onJobClick(int position) {
+        Intent intent = new Intent(this, VacancyDetails.class);
+        intent.putExtra(VacancyDetails.EXTRA_INTENT, position);
+        startActivity(intent);
     }
 }
