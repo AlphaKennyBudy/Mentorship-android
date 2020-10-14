@@ -13,6 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public abstract class NavigationBarActivity extends AppCompatActivity {
 
+    private static final String EXTRA_INTENT = "itemId";
     private Context context;
 
     protected final void onCreate(Bundle savedInstanceState, Context context, int layoutId) {
@@ -30,10 +31,10 @@ public abstract class NavigationBarActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.home_item:
-                                makeIntent(MainActivity.class);
+                                makeIntent(MainActivity.class, R.id.home_item);
                                 break;
                             case R.id.search_item:
-                                makeIntent(SearchActivity.class);
+                                makeIntent(SearchActivity.class, R.id.search_item);
                                 break;
                             case R.id.profile_item:
                                 // TODO
@@ -45,17 +46,22 @@ public abstract class NavigationBarActivity extends AppCompatActivity {
                     }
                 }
         );
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            bottomNavigation.setSelectedItemId(bundle.getInt(EXTRA_INTENT));
+        }
     }
 
-    public void makeIntent(Class<?> destinationActivity) {
+    public void makeIntent(Class<?> destinationActivity, int itemId) {
         if (context.getClass() != destinationActivity) {
             Intent intent = new Intent(context, destinationActivity);
+            intent.putExtra(EXTRA_INTENT, itemId);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                    | Intent.FLAG_ACTIVITY_CLEAR_TOP
-                    | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
             startActivity(intent);
             overridePendingTransition(0, 0);
+            finishAffinity();
         }
     }
 }
