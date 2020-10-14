@@ -9,4 +9,8 @@
     <string name="most_popular">Most popular</string>
     <string name="company_image">Company Image</string>
     <string name="nearby_jobs">Nearby jobs</string>
+    <style name="apply">Apply</style>
+    <string name="experience">Experience</string>
+    <string name="employee_type">Employee type</string>
+    <string name="job_description">Job Description</string>
 </resources>
