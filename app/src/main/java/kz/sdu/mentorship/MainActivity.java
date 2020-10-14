@@ -1,16 +1,11 @@
 package kz.sdu.mentorship;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,16 +15,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements JobsAdapter.OnJobListener {
+public class MainActivity extends NavigationBarActivity implements JobsAdapter.OnJobListener {
     public static List<Vacancy> vacancies;
+    private RecyclerView jobsList;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        configureBottomNavigation();
+    protected final void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState, this, R.layout.activity_main);
 
-        fetchData();
+        if (vacancies == null) {
+            fetchData();
+        } else if (jobsList == null) {
+            createRecyclerPopularJobs();
+            createRecyclerNearbyJobs();
+        }
     }
 
     private void fetchData() {
@@ -67,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements JobsAdapter.OnJob
 
     private void createRecycler(int viewId, int orientation, List<Vacancy> vacancies,
                                 ArrayList<Integer> images, int layoutId) {
-        RecyclerView jobsList = getRecyclerById(viewId, orientation);
+        jobsList = getRecyclerById(viewId, orientation);
         JobsAdapter jobsAdapter = new JobsAdapter(layoutId, images, vacancies, this);
         jobsList.setAdapter(jobsAdapter);
     }
@@ -92,35 +90,10 @@ public class MainActivity extends AppCompatActivity implements JobsAdapter.OnJob
         return dummyImages;
     }
 
-    private void configureBottomNavigation() {
-        BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
-        bottomNavigation.setOnNavigationItemSelectedListener(
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    switch (item.getItemId()) {
-                        case R.id.home_item:
-                            // TODO
-                            break;
-                        case R.id.search_item:
-                            // TODO
-                            break;
-                        case R.id.profile_item:
-                            // TODO
-                            break;
-                        default:
-                            return false;
-                    }
-                    return true;
-                }
-            }
-        );
-    }
-
     @Override
     public void onJobClick(int position) {
-        Intent intent = new Intent(this, VacancyDetails.class);
-        intent.putExtra(VacancyDetails.EXTRA_INTENT, position);
+        Intent intent = new Intent(this, VacancyDetailsActivity.class);
+        intent.putExtra(VacancyDetailsActivity.EXTRA_INTENT, position);
         startActivity(intent);
     }
 }

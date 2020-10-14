@@ -1,274 +1,284 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-    tools:context=".VacancyDetails">
+    tools:context=".VacancyDetailsActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_above="@id/bottom_navigation">
 
-        <FrameLayout
-            android:id="@+id/logoContainer"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/card_image"
-                android:layout_width="wrap_content"
-                android:layout_height="175dp"
-                android:layout_gravity="center_horizontal"
-                android:adjustViewBounds="false"
-                android:background="@drawable/custom_white_semi_rounded_card"
-                android:contentDescription="@string/company_image"
-                android:scaleType="centerInside"
-                app:srcCompat="@drawable/dummy_img" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <FrameLayout
+                android:id="@+id/logoContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:id="@+id/back_button"
-                    style="@style/Custom.Button.IconOnly"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_default"
-                    android:layout_marginTop="32dp"
-                    android:gravity="center"
-                    android:paddingHorizontal="13dp"
-                    android:paddingVertical="6dp"
-                    app:icon="@drawable/ic_baseline_arrow_back_24"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:onClick="onClickBack"/>
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/card_logo_image"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="72dp"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/custom_black_rounded_card_small"
+                    android:id="@+id/card_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="175dp"
+                    android:layout_gravity="center_horizontal"
+                    android:adjustViewBounds="false"
+                    android:background="@drawable/custom_white_semi_rounded_card"
                     android:contentDescription="@string/company_image"
-                    android:padding="15dp"
-                    android:scaleType="fitCenter"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/back_button"
-                    app:srcCompat="@drawable/dummy_img_3" />
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/dummy_img" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-        </FrameLayout>
+                    <Button
+                        android:id="@+id/back_button"
+                        style="@style/Custom.Button.IconOnly"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_default"
+                        android:layout_marginTop="32dp"
+                        android:gravity="center"
+                        android:paddingHorizontal="13dp"
+                        android:paddingVertical="6dp"
+                        app:icon="@drawable/ic_baseline_arrow_back_24"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:onClick="onClickBack"/>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/main_info_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="@dimen/margin_default"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/corner_radius_normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/logoContainer">
+                    <ImageView
+                        android:id="@+id/card_logo_image"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="72dp"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/custom_black_rounded_card_small"
+                        android:contentDescription="@string/company_image"
+                        android:padding="15dp"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/back_button"
+                        app:srcCompat="@drawable/dummy_img_3" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </FrameLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/main_info_card"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="15dp">
-
-                <TextView
-                    android:id="@+id/job_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/lato_bold"
-                    android:textSize="@dimen/font_large"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/company_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Airbnb"
-                    android:textSize="@dimen/font_normal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/job_name" />
-
-                <TextView
-                    android:id="@+id/location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
-                    android:text="Jakarta, Indonesia"
-                    android:textColor="@color/grey"
-                    android:textSize="@dimen/font_normal"
-                    app:layout_constraintStart_toEndOf="@+id/company_name"
-                    app:layout_constraintTop_toBottomOf="@+id/job_name" />
-
-                <Button
-                    android:id="@+id/favorite_button"
-                    style="@style/Custom.Button.IconOnly"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:paddingHorizontal="14dp"
-                    android:paddingVertical="8dp"
-                    app:icon="@drawable/ic_baseline_favorite_border_24"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/experience_card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/corner_radius_normal"
-            app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/main_info_card">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="15dp">
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/corner_radius_normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/logoContainer">
 
-                <TextView
-                    android:id="@+id/text_experience"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/experience"
-                    android:textColor="@color/grey"
-                    android:textSize="@dimen/font_normal" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="15dp">
 
-                <TextView
-                    android:id="@+id/experience"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/lato_bold"
-                    android:text="Minimum 1 year"
-                    android:textSize="@dimen/font_normal" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:id="@+id/job_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato_bold"
+                        android:textSize="@dimen/font_large"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5"/>
+                    <TextView
+                        android:id="@+id/company_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Airbnb"
+                        android:textSize="@dimen/font_normal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/job_name" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/duty_card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="@dimen/margin_default"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/corner_radius_normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/main_info_card">
+                    <TextView
+                        android:id="@+id/location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Jakarta, Indonesia"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/font_normal"
+                        app:layout_constraintStart_toEndOf="@+id/company_name"
+                        app:layout_constraintTop_toBottomOf="@+id/job_name" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/favorite_button"
+                        style="@style/Custom.Button.IconOnly"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="8dp"
+                        app:icon="@drawable/ic_baseline_favorite_border_24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/experience_card"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="15dp">
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/corner_radius_normal"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/main_info_card">
 
-                <TextView
-                    android:id="@+id/text_duty_type"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/employee_type"
-                    android:textColor="@color/grey"
-                    android:textSize="@dimen/font_normal" />
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
-                <TextView
-                    android:id="@+id/duty_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/lato_bold"
-                    android:textSize="@dimen/font_normal" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:id="@+id/text_experience"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/experience"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/font_normal" />
 
+                    <TextView
+                        android:id="@+id/experience"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/lato_bold"
+                        android:text="Minimum 1 year"
+                        android:textSize="@dimen/font_normal" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/job_description_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="@dimen/margin_default"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/corner_radius_normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/experience_card">
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="15dp">
+                app:layout_constraintGuide_percent="0.5"/>
 
-                <TextView
-                    android:id="@+id/text_job_description"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/duty_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/corner_radius_normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/main_info_card">
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/lato_bold"
-                    android:text="@string/job_description"
-                    android:textSize="@dimen/font_large" />
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
-                <TextView
-                    android:id="@+id/job_description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:textColor="@color/darkGrey"
-                    android:textSize="@dimen/font_normal" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/text_duty_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/employee_type"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/font_normal" />
+
+                    <TextView
+                        android:id="@+id/duty_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/lato_bold"
+                        android:textSize="@dimen/font_normal" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
 
-        </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/job_description_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/corner_radius_normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/experience_card">
 
-        <Button
-            android:id="@+id/apply_button"
-            style="@style/Custom.Button.Corners.Small"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:fontFamily="@font/lato_regular"
-            android:paddingVertical="12dp"
-            android:text="@string/apply"
-            android:textAllCaps="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/job_description_card" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:id="@+id/text_job_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato_bold"
+                        android:text="@string/job_description"
+                        android:textSize="@dimen/font_large" />
+
+                    <TextView
+                        android:id="@+id/job_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="@dimen/font_normal" />
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <Button
+                android:id="@+id/apply_button"
+                style="@style/Custom.Button.Corners.Small"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:fontFamily="@font/lato_regular"
+                android:paddingVertical="12dp"
+                android:text="@string/apply"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/job_description_card" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <include
+        layout="@layout/bottom_navbar"/>
+</RelativeLayout>

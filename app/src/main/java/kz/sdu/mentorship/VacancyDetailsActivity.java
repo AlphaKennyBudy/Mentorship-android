@@ -12,14 +12,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-public class VacancyDetails extends AppCompatActivity {
+public class VacancyDetailsActivity extends NavigationBarActivity {
     public static final String EXTRA_INTENT = "position";
     private int vacancyId;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vacancy_details);
+    protected final void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState, this, R.layout.activity_vacancy_details);
 
         Intent intent = getIntent();
         vacancyId = intent.getIntExtra(EXTRA_INTENT, 0);
