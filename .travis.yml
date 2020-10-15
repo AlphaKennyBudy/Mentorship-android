@@ -28,13 +28,12 @@ script:
 
 deploy:
   provider: releases
-    skip_cleanup: true
-    overwrite: true
+  skip_cleanup: true
+  overwrite: true
   api_key:
     secure: AFII9+xaM/aRpDVSef4R4sRVyWri+bmUbz4EgesuiSgxaDR/TjYt141rhQl1gmDg/l4PlA1rRIFxKh9q+ZyxvZ4gMwtFx11K4I2nCiNKE6vq4xyl1Edkvlg3Ig65d+oF+f7D2AtD3KNfxPxiKJzbsgqGbCO9khPoATKoHGPXsnqDtW3U5zVouTyDzNpGc4A5cJr4Yf7egvOD7jY4lY/qe5a7xb20f9uNQF4E9PWsRwDX052w5jJLonJYbAN6qGM5PiMciGE+5dsk7i0+LSxcnZyNunwVPwvTUqofdIc4qMXMoAYv5Bmxk8w+ThPogtEprDeh967sPI+gesc2WWEP/EsB6swbFOZ65cSiRTq7yjYow/lInp20FYuyRw39Wm0U29+59KtY15gCSNhNspAeCdQZ/xVmjNBr3XWIA5o3rTR9AdQYa0Wl2EYH8maJdJb30mWL3pXTTZA4ZYvredGYmHk1K9CzUAP/aqPaXCEItYTdjeCz2MG0nbsFzrD3u5ql9WteP8kgc0SmG7bpo01zBMAMcT239l0hSDJBG1Q1QIDC0CUBA7sz+EixQCWjBw1ENb/ZklyJ1H6eB1IomBOeL3BjzWXNPre34cEPyEWiBJQF8nTksM4UmncNjnoRm+5BxBlBTTCV6WVCN3u+vSZzR1UmhtecDgCfgENJhKoEdMw=
-  first_glob: true
-  file: /home/travis/build/AlphaKennyBudy/Mentorship-android/app/release
+  file_glob: true
+  file: /home/travis/build/AlphaKennyBudy/Mentorship-android/app/release/*
   on:
     repo: AlphaKennyBudy/Mentorship-android
     tags: true
-
