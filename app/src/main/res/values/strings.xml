@@ -13,4 +13,6 @@
     <string name="experience">Experience</string>
     <string name="employee_type">Employee type</string>
     <string name="job_description">Job Description</string>
+    <string name="categories">Categories</string>
+    <string name="search_results">Search Results</string>
 </resources>
