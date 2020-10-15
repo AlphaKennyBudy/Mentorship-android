@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,16 +13,15 @@ import java.util.List;
 
 import static kz.sdu.mentorship.MainActivity.vacancies;
 
-public class VacancyBySearchActivity extends AppCompatActivity implements JobsAdapter.OnJobListener {
+public class VacancyBySearchActivity extends NavigationBarActivity implements JobsAdapter.OnJobListener {
     public static final String EXTRA_INTENT = "position";
     public static final String EXTRA_INFO = "by_search";
     public static List<Vacancy> vacancies;
     private RecyclerView jobsList;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vacancy_by_search);
+    @SuppressLint("MissingSuperCall")
+    protected final void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState, this, R.layout.activity_vacancy_by_search);
 
         Intent intent = getIntent();
         int position = intent.getIntExtra(EXTRA_INTENT,0);
