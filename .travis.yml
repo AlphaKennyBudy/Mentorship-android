@@ -54,6 +54,7 @@ before_script:
   - rm -rf $TRAVIS_BUILD_DIR/app/build/outputs
   - chmod +x gradlew
   - chmod +x gradle/wrapper/gradle-wrapper.jar
+  - ./gradlew assembleRelease
 
 after_success:
   - chmod +x ./postApk.sh; ./postApk.sh
