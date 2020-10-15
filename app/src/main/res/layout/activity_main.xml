@@ -34,20 +34,16 @@
                     android:layout_marginEnd="20dp"
                     android:textSize="@dimen/font_larger"/>
 
-                <SearchView
+                <fragment
                     android:id="@+id/search_bar"
+                    android:name="kz.sdu.mentorship.SearchFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:iconifiedByDefault="false"
                     android:layout_below="@id/text_find_jobs"
                     android:layout_marginTop="15dp"
                     android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:paddingStart="-8dp"
-                    android:background="@drawable/custom_search_bar"
-                    android:queryHint="@string/what_are_you_looking_for"
-                    android:queryBackground="@null"
-                    tools:ignore="RtlSymmetry" />
+                    android:layout_marginEnd="20dp"/>
+
 
                 <TextView
                     android:id="@+id/text_popular_jobs"
