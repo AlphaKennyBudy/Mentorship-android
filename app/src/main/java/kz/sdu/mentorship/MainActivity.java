@@ -20,6 +20,7 @@ public class MainActivity extends NavigationBarActivity implements JobsAdapter.O
     public static List<Vacancy> vacancies;
     private RecyclerView jobsList;
     private SwipeRefreshLayout swipeRefreshLayout;
+    public static final String EXTRA_INFO = "by_home";
 
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, this, R.layout.activity_main);
@@ -37,6 +38,7 @@ public class MainActivity extends NavigationBarActivity implements JobsAdapter.O
     public void onJobClick(int position) {
         Intent intent = new Intent(this, VacancyDetailsActivity.class);
         intent.putExtra(VacancyDetailsActivity.EXTRA_INTENT, position);
+        intent.putExtra(VacancyDetailsActivity.EXTRA_SOURCE, EXTRA_INFO);
         startActivity(intent);
     }
 
