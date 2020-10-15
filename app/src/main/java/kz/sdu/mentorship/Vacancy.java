@@ -44,4 +44,8 @@ public class Vacancy {
     public int getSalary() {
         return salary;
     }
+
+    public void setJobName(String jobName) {
+        this.jobName = jobName;
+    }
 }
