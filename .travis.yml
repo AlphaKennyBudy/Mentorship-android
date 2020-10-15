@@ -24,6 +24,7 @@ cache:
     - '$HOME/.gradle/wrapper/'
     - '$HOME/.android/build-cache'
 script:
+  - 'chmod +x ./gradle'
   - './gradlew assembleRelease'
 
 deploy:
