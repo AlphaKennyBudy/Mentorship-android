@@ -41,7 +41,6 @@
         <item name="shapeAppearance">@style/Custom.ShapeAppearance.Small</item>
     </style>
 
-
     <style name="Custom.Button.TextAppearance" parent="TextAppearance.MaterialComponents.Button">
         <item name="fontFamily">@font/lato_bold</item>
         <item name="android:fontFamily">@font/lato_bold</item>
