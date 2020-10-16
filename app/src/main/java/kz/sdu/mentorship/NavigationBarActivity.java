@@ -33,7 +33,7 @@ public abstract class NavigationBarActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        if (bundle != null && !bundle.containsKey(EXTRA_INTENT)) {
+        if (bundle == null || !bundle.containsKey(EXTRA_INTENT)) {
             bottomNavigation.setSelectedItemId(lastItemId);
         }
 
