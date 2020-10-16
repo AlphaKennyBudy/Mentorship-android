@@ -1,7 +1,5 @@
 package kz.sdu.mentorship;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +14,7 @@ public class LoginActivity extends NavigationBarActivity {
     }
 
     public void onClickRegister(View view) {
-        Intent intent = new Intent(this, RegisterActivity.class);
+        Intent intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
     }
 }
