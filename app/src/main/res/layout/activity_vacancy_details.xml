@@ -106,7 +106,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="Airbnb"
                         android:textSize="@dimen/font_normal"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/job_name" />
@@ -117,7 +116,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="16dp"
-                        android:text="Jakarta, Indonesia"
                         android:textColor="@color/grey"
                         android:textSize="@dimen/font_normal"
                         app:layout_constraintStart_toEndOf="@+id/company_name"
@@ -172,7 +170,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/lato_bold"
-                        android:text="Minimum 1 year"
                         android:textSize="@dimen/font_normal" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
