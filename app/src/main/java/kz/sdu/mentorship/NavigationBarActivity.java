@@ -50,7 +50,7 @@ public abstract class NavigationBarActivity extends AppCompatActivity {
                                 makeIntent(SearchActivity.class, R.id.search_item);
                                 break;
                             case R.id.profile_item:
-                                // TODO
+                                makeIntent(LoginActivity.class, R.id.profile_item);
                                 break;
                             default:
                                 return false;
