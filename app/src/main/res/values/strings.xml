@@ -28,8 +28,14 @@
     <string name="need_an_account">Need an account?</string>
     <string name="register">Register</string>
     <string name="create_an_account">Create an account</string>
+    <string name="almost_done">Almost Done</string>
     <string name="email">Email</string>
     <string name="username">Username</string>
     <string name="next">Next</string>
     <string name="already_have_an_account">Already have an account?</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="country">Country</string>
+    <string name="city">City</string>
 </resources>
