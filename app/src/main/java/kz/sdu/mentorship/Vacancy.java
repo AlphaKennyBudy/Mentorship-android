@@ -21,6 +21,27 @@ public class Vacancy {
     @SerializedName("salary")
     int salary;
 
+    @SerializedName("country")
+    String country;
+
+    @SerializedName("city")
+    String city;
+
+    @SerializedName("experience")
+    int experience;
+
+    public String getCity() {
+        return city;
+    }
+
+    public int getExperience() {
+        return experience;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
     public int getVacancyId() {
         return vacancyId;
     }
