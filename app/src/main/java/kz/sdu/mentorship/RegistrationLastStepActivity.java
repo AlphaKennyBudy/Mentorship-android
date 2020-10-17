@@ -1,10 +1,12 @@
 package kz.sdu.mentorship;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,9 +15,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -84,6 +88,33 @@ public class RegistrationLastStepActivity extends NavigationBarActivity {
         super.onStart();
         configureAutoCompleteViews();
         setEmptyTextListeners();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AlertDialog alertDialog = new MaterialAlertDialogBuilder(this)
+                .setTitle("Confirm Navigation")
+                .setMessage("Are you sure you want to leave this page?")
+                .setNegativeButton("Cancel", null)
+                .setPositiveButton("Leave Page", null)
+                .setCancelable(false)
+                .create();
+
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(final DialogInterface dialog) {
+                Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        finish();
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+        alertDialog.show();
     }
 
     @Override
