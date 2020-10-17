@@ -56,7 +56,6 @@ public class RegistrationActivity extends NavigationBarActivity {
     public void onClickNext(View view) {
         boolean hasErrors = false;
         if (!RegistrationLastStepActivity.validate(fields, layouts)) {
-            Toast.makeText(this, "There are empty fields!", Toast.LENGTH_SHORT).show();
             hasErrors = true;
         }
         if (!validatePassword()) {

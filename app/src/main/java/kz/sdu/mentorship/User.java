@@ -40,8 +40,7 @@ public class User {
     @Expose
     String city;
 
-    public User(String userId, String username, String email, String phoneNumber, String password, String firstName, String lastName, String country, String city) {
-        this.userId = userId;
+    public User(String username, String email, String phoneNumber, String password, String firstName, String lastName, String country, String city) {
         this.username = username;
         this.email = email;
         this.phoneNumber = phoneNumber;

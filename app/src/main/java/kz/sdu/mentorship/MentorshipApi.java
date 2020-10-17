@@ -29,4 +29,7 @@ public interface MentorshipApi {
 
     @POST("/user/checkMail")
     Call<CheckMailResponse> checkMail(@Body CheckMailRequest request);
+
+    @POST("/user/signup")
+    Call<LoginResponse> register(@Body User user);
 }

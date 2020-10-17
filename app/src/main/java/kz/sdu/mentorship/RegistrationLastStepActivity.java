@@ -19,6 +19,12 @@ import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class RegistrationLastStepActivity extends NavigationBarActivity {
     private static final String[] countries = {"Kazakhstan", "Other"};
     private static final String[][] cities = {{
@@ -28,6 +34,9 @@ public class RegistrationLastStepActivity extends NavigationBarActivity {
             "Petropavl", "Taldykorgan", "Shymkent", "Oskemen", "Oral",
             "Taraz", "Other"
     }};
+
+    private SessionManager sessionManager;
+
     public static final String EXTRA_USERNAME = "username";
     public static final String EXTRA_PASSWORD = "password";
     public static final String EXTRA_EMAIL = "email";
@@ -56,6 +65,7 @@ public class RegistrationLastStepActivity extends NavigationBarActivity {
     @Override
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, this, R.layout.activity_registration_last_step);
+        sessionManager = new SessionManager(this);
         findAllViews();
         configureAutoCompleteViews();
         setEmptyTextListeners();
@@ -64,9 +74,35 @@ public class RegistrationLastStepActivity extends NavigationBarActivity {
     public void onClickRegister(View view) {
         if (validate(fields, layouts)) {
             getIntentExtra();
-        } else {
-            Toast.makeText(this, "There are empty fields!", Toast.LENGTH_SHORT).show();
+            User user = new User(username, email, phoneEditText.getText().toString(), password,
+                    firstNameEditText.getText().toString(), lastNameEditText.getText().toString(),
+                    countriesView.getText().toString(), citiesView.getText().toString());
+            makeRegisterRequest(user);
         }
+    }
+
+    public void makeRegisterRequest(User user) {
+        NetworkService
+            .getInstance()
+            .getJSONApi()
+            .register(user)
+            .enqueue(new Callback<LoginResponse>() {
+                @Override
+                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                    if (response.isSuccessful()) {
+                        ProfileActivity.user = response.body().getUser();
+                        sessionManager.saveToken(response.body().getToken());
+                        makeIntent(ProfileActivity.class);
+                    } else if (response.code() == 400) {
+                        // TODO
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<LoginResponse> call, Throwable t) {
+                    Log.d("error", Objects.requireNonNull(t.getMessage()));
+                }
+            });
     }
 
     public static boolean validate(EditText[] fields, TextInputLayout[] layouts) {
@@ -145,5 +181,11 @@ public class RegistrationLastStepActivity extends NavigationBarActivity {
                 }
             }
         });
+    }
+
+    private void makeIntent(Class<?> destinationClass) {
+        Intent intent = new Intent(this, destinationClass);
+        startActivity(intent);
+        finishAffinity();
     }
 }
