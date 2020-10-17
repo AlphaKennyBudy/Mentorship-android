@@ -51,7 +51,7 @@ public class LoginActivity extends NavigationBarActivity {
                             ProfileActivity.user = loginResponse.getUser();
                             makeIntent(ProfileActivity.class);
                         } else if (response.code() == 400) {
-                            Toast.makeText(LoginActivity.this, "Login or password is incorrect!", Toast.LENGTH_SHORT).show();
+                            passwordLayout.setError("Login or password is incorrect!");
                         }
                     }
 

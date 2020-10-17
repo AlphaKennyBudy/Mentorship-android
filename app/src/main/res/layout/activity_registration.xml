@@ -123,6 +123,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lato_regular"
+                    android:nextFocusForward="@id/button_next"
                     android:inputType="textPassword"
                     android:textSize="@dimen/font_semi_large" />
             </com.google.android.material.textfield.TextInputLayout>
