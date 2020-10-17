@@ -1,5 +1,6 @@
 package kz.sdu.mentorship;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -45,6 +46,15 @@ public class RegistrationLastStepActivity extends NavigationBarActivity {
     String username;
     String password;
 
+    private final String EMAIL_KEY = "email";
+    private final String USERNAME_KEY = "username";
+    private final String PASSWORD_KEY = "password";
+    private final String PHONE_KEY = "phone";
+    private final String FIRST_NAME_KEY = "first_name";
+    private final String LAST_NAME_KEY = "last_name";
+    private final String COUNTRY_KEY = "country";
+    private final String CITY_KEY = "city";
+
     MaterialAutoCompleteTextView countriesView;
     MaterialAutoCompleteTextView citiesView;
     TextInputEditText phoneEditText;
@@ -69,6 +79,34 @@ public class RegistrationLastStepActivity extends NavigationBarActivity {
         findAllViews();
         configureAutoCompleteViews();
         setEmptyTextListeners();
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        email = savedInstanceState.getString(EMAIL_KEY);
+        username = savedInstanceState.getString(USERNAME_KEY);
+        password = savedInstanceState.getString(PASSWORD_KEY);
+        phoneEditText.setText(savedInstanceState.getString(PHONE_KEY));
+        firstNameEditText.setText(savedInstanceState.getString(FIRST_NAME_KEY));
+        lastNameEditText.setText(savedInstanceState.getString(LAST_NAME_KEY));
+        countriesView.setText(savedInstanceState.getString(COUNTRY_KEY));
+        citiesView.setText(savedInstanceState.getString(CITY_KEY));
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString(EMAIL_KEY, email);
+        outState.putString(USERNAME_KEY, username);
+        outState.putString(PASSWORD_KEY, password);
+        outState.putString(PHONE_KEY, phoneEditText.getText().toString());
+        outState.putString(FIRST_NAME_KEY, firstNameEditText.getText().toString());
+        outState.putString(LAST_NAME_KEY, lastNameEditText.getText().toString());
+        outState.putString(COUNTRY_KEY, countriesView.getText().toString());
+        outState.putString(CITY_KEY, citiesView.getText().toString());
     }
 
     public void onClickRegister(View view) {

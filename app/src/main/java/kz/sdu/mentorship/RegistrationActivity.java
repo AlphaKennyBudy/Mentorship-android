@@ -1,7 +1,5 @@
 package kz.sdu.mentorship;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -24,6 +21,11 @@ import retrofit2.Response;
 
 public class RegistrationActivity extends NavigationBarActivity {
     private Button nextButton;
+
+    private final String EMAIL_KEY = "email";
+    private final String USERNAME_KEY = "username";
+    private final String PASSWORD_KEY = "password";
+    private final String PASSWORD_CONFIRM_KEY = "password_confirm";
 
     private TextInputEditText emailEditText;
     private TextInputEditText usernameEditText;
@@ -46,6 +48,24 @@ public class RegistrationActivity extends NavigationBarActivity {
         findAllViews();
         setEmptyTextListeners();
         createPasswordListener();
+    }
+
+    @Override
+    protected void onRestoreInstanceState (Bundle savedInstanceState) {
+        super.onRestoreInstanceState (savedInstanceState);
+        emailEditText.setText(savedInstanceState.getString(EMAIL_KEY));
+        usernameEditText.setText(savedInstanceState.getString(USERNAME_KEY));
+        passwordEditText.setText(savedInstanceState.getString(PASSWORD_KEY));
+        passwordConfirmEditText.setText(savedInstanceState.getString(PASSWORD_CONFIRM_KEY));
+    }
+
+    @Override
+    protected void onSaveInstanceState (Bundle outState) {
+        super.onSaveInstanceState (outState);
+        outState.putString(EMAIL_KEY, emailEditText.getText().toString());
+        outState.putString(USERNAME_KEY, usernameEditText.getText().toString());
+        outState.putString(PASSWORD_KEY, passwordEditText.getText().toString());
+        outState.putString(PASSWORD_CONFIRM_KEY, passwordConfirmEditText.getText().toString());
     }
 
     public void onClickLogin(View view) {

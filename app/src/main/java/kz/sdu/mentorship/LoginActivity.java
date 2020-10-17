@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -19,6 +21,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends NavigationBarActivity {
+    private final String LOGIN_KEY = "login";
+    private final String PASSWORD_KEY = "password";
 
     SessionManager sessionManager;
     private TextInputEditText loginEditText;
@@ -33,6 +37,21 @@ public class LoginActivity extends NavigationBarActivity {
         sessionManager = new SessionManager(this);
         findViews();
         setEmptyListeners();
+    }
+
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        loginEditText.setText(savedInstanceState.getString(LOGIN_KEY));
+        passwordEditText.setText(savedInstanceState.getString(PASSWORD_KEY));
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(LOGIN_KEY, loginEditText.getText().toString());
+        outState.putString(PASSWORD_KEY, passwordEditText.getText().toString());
     }
 
     public void onClickLogin(View view) {
