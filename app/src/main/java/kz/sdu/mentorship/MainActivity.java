@@ -33,6 +33,11 @@ public class MainActivity extends NavigationBarActivity implements JobsAdapter.O
             createRecyclerPopularJobs();
             createRecyclerNearbyJobs();
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         setSwipeRefresh();
     }
 

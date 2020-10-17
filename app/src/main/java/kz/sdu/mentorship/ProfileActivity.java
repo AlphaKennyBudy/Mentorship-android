@@ -40,6 +40,11 @@ public class ProfileActivity extends NavigationBarActivity {
         } else {
             setDataToViews();
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         createAdapter();
     }
 

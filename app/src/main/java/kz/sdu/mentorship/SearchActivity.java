@@ -23,9 +23,9 @@ public class SearchActivity extends NavigationBarActivity {
     @SuppressLint("MissingSuperCall")
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, this, R.layout.activity_search);
-
         configureCategoriesList();
     }
+
 
     private void configureCategoriesList() {
         if (MainActivity.vacancies == null) return;

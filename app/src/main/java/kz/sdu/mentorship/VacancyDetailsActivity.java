@@ -34,7 +34,11 @@ public class VacancyDetailsActivity extends NavigationBarActivity {
         Intent intent = getIntent();
         vacancyId = intent.getIntExtra(EXTRA_INTENT, 0);
         source = intent.getStringExtra(EXTRA_SOURCE);
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
         loadVacancy();
         configureStatusBar();
     }

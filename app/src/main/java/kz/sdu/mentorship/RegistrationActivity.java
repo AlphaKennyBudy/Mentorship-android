@@ -44,8 +44,13 @@ public class RegistrationActivity extends NavigationBarActivity {
     @Override
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, this, R.layout.activity_registration);
-
         findAllViews();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         setEmptyTextListeners();
         createPasswordListener();
     }

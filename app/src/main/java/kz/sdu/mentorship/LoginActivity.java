@@ -36,9 +36,13 @@ public class LoginActivity extends NavigationBarActivity {
         super.onCreate(savedInstanceState, this, R.layout.activity_login);
         sessionManager = new SessionManager(this);
         findViews();
-        setEmptyListeners();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setEmptyListeners();
+    }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {

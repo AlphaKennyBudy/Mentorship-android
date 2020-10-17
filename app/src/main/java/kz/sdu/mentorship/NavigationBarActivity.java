@@ -24,6 +24,11 @@ public abstract class NavigationBarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.context = context;
         setContentView(layoutId);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         configureBottomNavigation();
     }
 

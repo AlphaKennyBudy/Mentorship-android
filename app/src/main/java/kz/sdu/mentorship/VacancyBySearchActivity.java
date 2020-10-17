@@ -26,6 +26,11 @@ public class VacancyBySearchActivity extends NavigationBarActivity implements Jo
         Intent intent = getIntent();
         int position = intent.getIntExtra(EXTRA_INTENT,0);
         fetchVacanciesFromCategory(position);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         createRecyclerBySearch();
     }
 

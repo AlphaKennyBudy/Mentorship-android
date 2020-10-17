@@ -77,6 +77,11 @@ public class RegistrationLastStepActivity extends NavigationBarActivity {
         super.onCreate(savedInstanceState, this, R.layout.activity_registration_last_step);
         sessionManager = new SessionManager(this);
         findAllViews();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         configureAutoCompleteViews();
         setEmptyTextListeners();
     }
