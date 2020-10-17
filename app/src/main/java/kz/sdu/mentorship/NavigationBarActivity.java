@@ -16,7 +16,7 @@ import java.io.Console;
 
 public abstract class NavigationBarActivity extends AppCompatActivity {
 
-    private static final String EXTRA_INTENT = "itemId";
+    public static final String EXTRA_INTENT = "itemId";
     private static int lastItemId = R.id.home_item;
     private Context context;
 
@@ -50,7 +50,11 @@ public abstract class NavigationBarActivity extends AppCompatActivity {
                                 makeIntent(SearchActivity.class, R.id.search_item);
                                 break;
                             case R.id.profile_item:
-                                makeIntent(LoginActivity.class, R.id.profile_item);
+                                if (SessionManager.fetchToken(context) != null) {
+                                    makeIntent(ProfileActivity.class, R.id.profile_item);
+                                } else {
+                                    makeIntent(LoginActivity.class, R.id.profile_item);
+                                }
                                 break;
                             default:
                                 return false;
@@ -66,7 +70,7 @@ public abstract class NavigationBarActivity extends AppCompatActivity {
         }
     }
 
-    public void makeIntent(Class<?> destinationActivity, int itemId) {
+    private void makeIntent(Class<?> destinationActivity, int itemId) {
         if (context.getClass() != destinationActivity) {
             Intent intent = new Intent(context, destinationActivity);
             intent.putExtra(EXTRA_INTENT, itemId);
