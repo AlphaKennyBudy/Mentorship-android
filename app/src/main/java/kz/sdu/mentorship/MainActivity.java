@@ -18,6 +18,8 @@ import retrofit2.Response;
 
 public class MainActivity extends NavigationBarActivity implements JobsAdapter.OnJobListener {
     public static List<Vacancy> vacancies;
+    public static List<Employer> employers;
+
     private RecyclerView jobsList;
     private SwipeRefreshLayout swipeRefreshLayout;
     public static final String EXTRA_INFO = "by_home";
@@ -26,7 +28,7 @@ public class MainActivity extends NavigationBarActivity implements JobsAdapter.O
         super.onCreate(savedInstanceState, this, R.layout.activity_main);
 
         if (vacancies == null) {
-            fetchData();
+            fetchVacancies();
         } else if (jobsList == null) {
             createRecyclerPopularJobs();
             createRecyclerNearbyJobs();
@@ -42,7 +44,7 @@ public class MainActivity extends NavigationBarActivity implements JobsAdapter.O
         startActivity(intent);
     }
 
-    private void fetchData() {
+    private void fetchVacancies() {
         NetworkService
                 .getInstance()
                 .getJSONApi()
@@ -54,6 +56,10 @@ public class MainActivity extends NavigationBarActivity implements JobsAdapter.O
                         createRecyclerPopularJobs();
                         createRecyclerNearbyJobs();
                         swipeRefreshLayout.setRefreshing(false);
+
+                        if (employers == null) {
+//                            fetchEmployers();
+                        }
                     }
 
                     @Override
@@ -62,6 +68,25 @@ public class MainActivity extends NavigationBarActivity implements JobsAdapter.O
                     }
                 });
     }
+
+    private void fetchEmployers() {
+        NetworkService
+                .getInstance()
+                .getJSONApi()
+                .getAllEmployers()
+                .enqueue(new Callback<List<Employer>>() {
+                    @Override
+                    public void onResponse(Call<List<Employer>> call, Response<List<Employer>> response) {
+                        employers = response.body();
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Employer>> call, Throwable t) {
+                        Log.d("error", Objects.requireNonNull(t.getMessage()));
+                    }
+                });
+    }
+
     private void createRecyclerPopularJobs() {
         if (vacancies == null || vacancies.isEmpty()) return;
         ArrayList<Integer> dummyImages = generateDummyImages(vacancies.size(), 0);
@@ -109,7 +134,7 @@ public class MainActivity extends NavigationBarActivity implements JobsAdapter.O
             @Override
             public void onRefresh() {
                 vacancies = null;
-                fetchData();
+                fetchVacancies();
             }
         });
     }
