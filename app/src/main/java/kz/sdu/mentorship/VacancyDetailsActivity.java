@@ -89,7 +89,6 @@ public class VacancyDetailsActivity extends NavigationBarActivity {
                     @Override
                     public void onResponse(Call<CompanyName> call, Response<CompanyName> response) {
                         if (response.isSuccessful()) {
-                            Log.d("a", "AAAAAAAAAAAADSSDSD");
                             assert response.body() != null;
                             companyView.setText(response.body().getCompanyName());
                         }
