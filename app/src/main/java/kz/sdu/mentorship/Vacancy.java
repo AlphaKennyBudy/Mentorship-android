@@ -3,11 +3,11 @@ package kz.sdu.mentorship;
 import com.google.gson.annotations.SerializedName;
 
 public class Vacancy {
-    @SerializedName("vacancy_id")
-    int vacancyId;
+    @SerializedName("_id")
+    String vacancyId;
 
-    @SerializedName("employee_id")
-    int employeeId;
+    @SerializedName("employer_id")
+    String employerId;
 
     @SerializedName("name_of_vacancy")
     String jobName;
@@ -42,12 +42,12 @@ public class Vacancy {
         return country;
     }
 
-    public int getVacancyId() {
+    public String getVacancyId() {
         return vacancyId;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
+    public String getEmployerId() {
+        return employerId;
     }
 
     public String getJobName() {
