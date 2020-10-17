@@ -16,4 +16,5 @@
     <color name="whiteSmoke">#F5F5F5</color>
     <color name="transparentBlack">#66000000</color>
     <color name="red">#FF0000</color>
+    <color name="lightRed">#D83131</color>
 </resources>
