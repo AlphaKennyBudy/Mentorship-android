@@ -9,19 +9,34 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class RegistrationActivity extends NavigationBarActivity {
+    private Button nextButton;
 
     private TextInputEditText emailEditText;
     private TextInputEditText usernameEditText;
     private TextInputEditText passwordEditText;
     private TextInputEditText passwordConfirmEditText;
+
+    private TextInputLayout emailLayout;
+    private TextInputLayout usernameLayout;
+    private TextInputLayout firstPasswordLayout;
+    private TextInputLayout secondPasswordLayout;
+
     private EditText[] fields;
+    private TextInputLayout[] layouts;
 
     @SuppressLint("MissingSuperCall")
     @Override
@@ -39,15 +54,38 @@ public class RegistrationActivity extends NavigationBarActivity {
     }
 
     public void onClickNext(View view) {
-        if (!RegistrationLastStepActivity.validate(fields)) {
+        boolean hasErrors = false;
+        if (!RegistrationLastStepActivity.validate(fields, layouts)) {
             Toast.makeText(this, "There are empty fields!", Toast.LENGTH_SHORT).show();
-            return;
+            hasErrors = true;
         }
         if (!validatePassword()) {
-            Toast.makeText(this, "Password do not match!", Toast.LENGTH_SHORT).show();
-            return;
+            secondPasswordLayout.setError("Password do not match!");
+            hasErrors = true;
         }
-        makeIntent(RegistrationLastStepActivity.class);
+        validateEmail (hasErrors);
+    }
+
+    private void validateEmail(final boolean hasErrors) {
+        NetworkService
+            .getInstance()
+            .getJSONApi()
+            .checkMail(new CheckMailRequest(emailEditText.getText().toString()))
+            .enqueue(new Callback<CheckMailResponse>() {
+                @Override
+                public void onResponse(Call<CheckMailResponse> call, Response<CheckMailResponse> response) {
+                    if (response.body() != null && response.body().isRegistered()) {
+                        emailLayout.setError("Email is already in use!");
+                    } else if (!response.body().isRegistered() && !hasErrors) {
+                        makeIntentWithExtra(RegistrationLastStepActivity.class);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<CheckMailResponse> call, Throwable t) {
+                    Log.d("error", Objects.requireNonNull(t.getMessage()));
+                }
+            });
     }
 
     private boolean validatePassword() {
@@ -61,7 +99,13 @@ public class RegistrationActivity extends NavigationBarActivity {
         usernameEditText = findViewById(R.id.username_edit_text);
         passwordEditText = findViewById(R.id.password_edit_text);
         passwordConfirmEditText = findViewById(R.id.password_confirm_edit_text);
+        emailLayout = findViewById(R.id.email_input_layout);
+        usernameLayout = findViewById(R.id.username_input_layout);
+        firstPasswordLayout = findViewById(R.id.password_input_layout);
+        secondPasswordLayout = findViewById(R.id.password_confirm_input_layout);
+
         fields = new EditText[]{emailEditText, usernameEditText, passwordEditText, passwordConfirmEditText};
+        layouts = new TextInputLayout[]{emailLayout, usernameLayout, firstPasswordLayout, secondPasswordLayout};
     }
 
     private void setEmptyTextListeners() {
@@ -71,8 +115,6 @@ public class RegistrationActivity extends NavigationBarActivity {
     }
 
     private void createPasswordListener() {
-        final TextInputLayout secondPasswordLayout = findViewById(R.id.password_confirm_input_layout);
-
         passwordConfirmEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -112,6 +154,14 @@ public class RegistrationActivity extends NavigationBarActivity {
 
             }
         });
+    }
+
+    private void makeIntentWithExtra(Class<?> destinationClass) {
+        Intent intent = new Intent(this, destinationClass);
+        intent.putExtra(RegistrationLastStepActivity.EXTRA_USERNAME, usernameEditText.getText().toString());
+        intent.putExtra(RegistrationLastStepActivity.EXTRA_PASSWORD, passwordEditText.getText().toString());
+        intent.putExtra(RegistrationLastStepActivity.EXTRA_EMAIL, emailEditText.getText().toString());
+        startActivity(intent);
     }
 
     private void makeIntent(Class<?> destinationClass) {

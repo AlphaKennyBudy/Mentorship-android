@@ -26,4 +26,7 @@ public interface MentorshipApi {
 
     @GET("/user/me")
     Call<User> getUserInfo(@Header("token") String token);
+
+    @POST("/user/checkMail")
+    Call<CheckMailResponse> checkMail(@Body CheckMailRequest request);
 }
