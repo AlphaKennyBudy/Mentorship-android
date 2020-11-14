@@ -1,6 +1,5 @@
-package kz.sdu.mentorship;
+package kz.sdu.mentorship.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
@@ -15,13 +14,17 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.Objects;
 
+import kz.sdu.mentorship.network.NetworkService;
+import kz.sdu.mentorship.adapters.ProfileListAdapter;
+import kz.sdu.mentorship.R;
+import kz.sdu.mentorship.network.SessionManager;
+import kz.sdu.mentorship.models.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

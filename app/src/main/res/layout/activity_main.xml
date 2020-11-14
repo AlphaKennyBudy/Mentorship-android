@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/swipe_refresh"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
 
                 <fragment
                     android:id="@+id/search_bar"
-                    android:name="kz.sdu.mentorship.SearchFragment"
+                    android:name="kz.sdu.mentorship.fragments.SearchFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/text_find_jobs"

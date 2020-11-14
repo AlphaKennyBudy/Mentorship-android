@@ -1,6 +1,5 @@
-package kz.sdu.mentorship;
+package kz.sdu.mentorship.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,7 +10,9 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.List;
 
-import static kz.sdu.mentorship.MainActivity.vacancies;
+import kz.sdu.mentorship.adapters.JobsAdapter;
+import kz.sdu.mentorship.R;
+import kz.sdu.mentorship.models.Vacancy;
 
 public class VacancyBySearchActivity extends NavigationBarActivity implements JobsAdapter.OnJobListener {
     public static final String EXTRA_INTENT = "position";

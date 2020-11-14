@@ -1,10 +1,8 @@
-package kz.sdu.mentorship;
+package kz.sdu.mentorship.activities;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,7 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
@@ -22,6 +19,11 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
 
+import kz.sdu.mentorship.models.LoginResponse;
+import kz.sdu.mentorship.network.NetworkService;
+import kz.sdu.mentorship.R;
+import kz.sdu.mentorship.network.SessionManager;
+import kz.sdu.mentorship.models.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

@@ -1,4 +1,4 @@
-package kz.sdu.mentorship;
+package kz.sdu.mentorship.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import kz.sdu.mentorship.R;
+import kz.sdu.mentorship.models.Vacancy;
 
 public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.JobViewHolder> {
     int layoutId;

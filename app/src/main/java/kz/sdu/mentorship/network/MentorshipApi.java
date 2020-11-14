@@ -1,11 +1,18 @@
-package kz.sdu.mentorship;
+package kz.sdu.mentorship.network;
 
 import java.util.List;
 
+import kz.sdu.mentorship.models.CheckMailRequest;
+import kz.sdu.mentorship.models.CheckMailResponse;
+import kz.sdu.mentorship.models.CompanyName;
+import kz.sdu.mentorship.models.Employer;
+import kz.sdu.mentorship.models.EmployerId;
+import kz.sdu.mentorship.models.LoginRequest;
+import kz.sdu.mentorship.models.LoginResponse;
+import kz.sdu.mentorship.models.User;
+import kz.sdu.mentorship.models.Vacancy;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;

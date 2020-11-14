@@ -1,6 +1,4 @@
-package kz.sdu.mentorship;
-
-import androidx.appcompat.app.AppCompatActivity;
+package kz.sdu.mentorship.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -13,9 +11,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import java.util.List;
 import java.util.Objects;
 
+import kz.sdu.mentorship.models.CompanyName;
+import kz.sdu.mentorship.models.EmployerId;
+import kz.sdu.mentorship.network.NetworkService;
+import kz.sdu.mentorship.R;
+import kz.sdu.mentorship.models.Vacancy;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

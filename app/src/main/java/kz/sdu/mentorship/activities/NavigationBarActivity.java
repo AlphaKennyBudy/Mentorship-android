@@ -1,18 +1,17 @@
-package kz.sdu.mentorship;
+package kz.sdu.mentorship.activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.IntentCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.io.Console;
+import kz.sdu.mentorship.R;
+import kz.sdu.mentorship.network.SessionManager;
 
 public abstract class NavigationBarActivity extends AppCompatActivity {
 

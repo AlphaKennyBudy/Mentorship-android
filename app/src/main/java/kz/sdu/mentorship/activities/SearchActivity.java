@@ -1,6 +1,4 @@
-package kz.sdu.mentorship;
-
-import androidx.appcompat.app.AppCompatActivity;
+package kz.sdu.mentorship.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -14,6 +12,9 @@ import org.apache.commons.text.WordUtils;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import kz.sdu.mentorship.R;
+import kz.sdu.mentorship.models.Vacancy;
 
 public class SearchActivity extends NavigationBarActivity {
 

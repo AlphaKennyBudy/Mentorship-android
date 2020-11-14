@@ -1,4 +1,4 @@
-package kz.sdu.mentorship;
+package kz.sdu.mentorship.activities;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import kz.sdu.mentorship.models.Employer;
+import kz.sdu.mentorship.adapters.JobsAdapter;
+import kz.sdu.mentorship.network.NetworkService;
+import kz.sdu.mentorship.R;
+import kz.sdu.mentorship.models.Vacancy;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

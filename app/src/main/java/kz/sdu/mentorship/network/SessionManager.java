@@ -1,8 +1,10 @@
-package kz.sdu.mentorship;
+package kz.sdu.mentorship.network;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+
+import kz.sdu.mentorship.R;
 
 public class SessionManager {
     private Context context;

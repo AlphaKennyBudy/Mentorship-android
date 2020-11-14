@@ -1,4 +1,4 @@
-package kz.sdu.mentorship;
+package kz.sdu.mentorship.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import kz.sdu.mentorship.R;
 
 public class ProfileListAdapter extends BaseAdapter {
     private Context context;

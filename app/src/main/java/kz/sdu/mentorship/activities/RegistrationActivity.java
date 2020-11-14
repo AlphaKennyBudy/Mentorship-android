@@ -1,4 +1,4 @@
-package kz.sdu.mentorship;
+package kz.sdu.mentorship.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -15,6 +15,10 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
 
+import kz.sdu.mentorship.models.CheckMailRequest;
+import kz.sdu.mentorship.models.CheckMailResponse;
+import kz.sdu.mentorship.network.NetworkService;
+import kz.sdu.mentorship.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
