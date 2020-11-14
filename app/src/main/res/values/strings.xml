@@ -40,4 +40,8 @@
     <string name="city">City</string>
     <string name="profile_image">Profile Image</string>
     <string name="icon">Icon</string>
+    <string name="field_is_required">This field is required!</string>
+    <string name="login_password_incorrect">Login or password is incorrect!</string>
+    <string name="passwords_not_match">Passwords do not match!</string>
+    <string name="email_in_use">"Email is already in use!"</string>
 </resources>

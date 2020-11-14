@@ -73,7 +73,7 @@ public class LoginActivity extends NavigationBarActivity {
                             ProfileActivity.user = loginResponse.getUser();
                             makeIntent(ProfileActivity.class);
                         } else if (response.code() == 400) {
-                            passwordLayout.setError("Login or password is incorrect!");
+                            passwordLayout.setError(getString(R.string.login_password_incorrect));
                         }
                     }
 
@@ -92,18 +92,18 @@ public class LoginActivity extends NavigationBarActivity {
     }
 
     private void setEmptyListeners() {
-        RegistrationLastStepActivity.createEmptyTextListener((EditText) loginEditText, loginLayout);
-        RegistrationLastStepActivity.createEmptyTextListener((EditText) passwordEditText, passwordLayout);
+        RegistrationLastStepActivity.createEmptyTextListener(this, (EditText) loginEditText, loginLayout);
+        RegistrationLastStepActivity.createEmptyTextListener(this, (EditText) passwordEditText, passwordLayout);
     }
 
     private boolean validateEmptyFields() {
         boolean result = true;
         if (loginEditText.getText().length() == 0) {
-            loginLayout.setError("This field is required!");
+            loginLayout.setError(getString(R.string.field_is_required));
             result = false;
         }
         if (passwordEditText.getText().length() == 0) {
-            passwordLayout.setError("This field is required!");
+            passwordLayout.setError(getString(R.string.field_is_required));
             result = false;
         }
         return result;

@@ -79,11 +79,11 @@ public class RegistrationActivity extends NavigationBarActivity {
 
     public void onClickNext(View view) {
         boolean hasErrors = false;
-        if (!RegistrationLastStepActivity.validate(fields, layouts)) {
+        if (!RegistrationLastStepActivity.validate(this, fields, layouts)) {
             hasErrors = true;
         }
         if (!validatePassword()) {
-            secondPasswordLayout.setError("Password do not match!");
+            secondPasswordLayout.setError(getString(R.string.passwords_not_match));
             hasErrors = true;
         }
         validateEmail (hasErrors);
@@ -98,7 +98,7 @@ public class RegistrationActivity extends NavigationBarActivity {
                 @Override
                 public void onResponse(Call<CheckMailResponse> call, Response<CheckMailResponse> response) {
                     if (response.body() != null && response.body().isRegistered()) {
-                        emailLayout.setError("Email is already in use!");
+                        emailLayout.setError(getString(R.string.email_in_use));
                     } else if (!response.body().isRegistered() && !hasErrors) {
                         makeIntentWithExtra(RegistrationLastStepActivity.class);
                     }
@@ -132,9 +132,9 @@ public class RegistrationActivity extends NavigationBarActivity {
     }
 
     private void setEmptyTextListeners() {
-        RegistrationLastStepActivity.createEmptyTextListener(emailEditText, (TextInputLayout) findViewById(R.id.email_input_layout));
-        RegistrationLastStepActivity.createEmptyTextListener(usernameEditText, (TextInputLayout) findViewById(R.id.username_input_layout));
-        RegistrationLastStepActivity.createEmptyTextListener(passwordEditText, (TextInputLayout) findViewById(R.id.password_input_layout));
+        RegistrationLastStepActivity.createEmptyTextListener(this, emailEditText, (TextInputLayout) findViewById(R.id.email_input_layout));
+        RegistrationLastStepActivity.createEmptyTextListener(this, usernameEditText, (TextInputLayout) findViewById(R.id.username_input_layout));
+        RegistrationLastStepActivity.createEmptyTextListener(this, passwordEditText, (TextInputLayout) findViewById(R.id.password_input_layout));
     }
 
     private void createPasswordListener() {
@@ -145,7 +145,7 @@ public class RegistrationActivity extends NavigationBarActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!s.toString().equals(String.valueOf(passwordEditText.getText()))) {
-                    secondPasswordLayout.setError("Password do not match!");
+                    secondPasswordLayout.setError(getString(R.string.passwords_not_match));
                 } else {
                     secondPasswordLayout.setErrorEnabled(false);
                 }
@@ -165,7 +165,7 @@ public class RegistrationActivity extends NavigationBarActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (passwordConfirmEditText.getText().length() != 0) {
                     if (!s.toString().equals(String.valueOf(passwordConfirmEditText.getText()))) {
-                        secondPasswordLayout.setError("Password do not match!");
+                        secondPasswordLayout.setError(getString(R.string.passwords_not_match));
                     } else {
                         secondPasswordLayout.setErrorEnabled(false);
                     }

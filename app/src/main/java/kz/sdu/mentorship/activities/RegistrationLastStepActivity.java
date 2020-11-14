@@ -3,6 +3,7 @@ package kz.sdu.mentorship.activities;
 import androidx.annotation.NonNull;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -112,7 +113,7 @@ public class RegistrationLastStepActivity extends NavigationBarActivity {
     }
 
     public void onClickRegister(View view) {
-        if (validate(fields, layouts)) {
+        if (validate(this, fields, layouts)) {
             getIntentExtra();
             User user = new User(username, email, phoneEditText.getText().toString(), password,
                     firstNameEditText.getText().toString(), lastNameEditText.getText().toString(),
@@ -145,11 +146,11 @@ public class RegistrationLastStepActivity extends NavigationBarActivity {
             });
     }
 
-    public static boolean validate(EditText[] fields, TextInputLayout[] layouts) {
+    public static boolean validate(Context context, EditText[] fields, TextInputLayout[] layouts) {
         boolean result = true;
         for (int i = 0; i < fields.length; i++) {
             if (fields[i].length() == 0) {
-                layouts[i].setError("This field is required!");
+                layouts[i].setError(context.getString(R.string.field_is_required));
                 result = false;
             }
         }
@@ -197,14 +198,14 @@ public class RegistrationLastStepActivity extends NavigationBarActivity {
     }
 
     private void setEmptyTextListeners() {
-        createEmptyTextListener(countriesView, countryLayout);
-        createEmptyTextListener(citiesView, cityLayout);
-        createEmptyTextListener(phoneEditText, phoneLayout);
-        createEmptyTextListener(firstNameEditText, firstNameLayout);
-        createEmptyTextListener(lastNameEditText, lastNameLayout);
+        createEmptyTextListener(this, countriesView, countryLayout);
+        createEmptyTextListener(this, citiesView, cityLayout);
+        createEmptyTextListener(this, phoneEditText, phoneLayout);
+        createEmptyTextListener(this, firstNameEditText, firstNameLayout);
+        createEmptyTextListener(this, lastNameEditText, lastNameLayout);
     }
 
-    public static void createEmptyTextListener(EditText editText, final TextInputLayout inputLayout) {
+    public static void createEmptyTextListener(final Context context, EditText editText, final TextInputLayout inputLayout) {
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -215,7 +216,7 @@ public class RegistrationLastStepActivity extends NavigationBarActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() == 0) {
-                    inputLayout.setError("This field is required!");
+                    inputLayout.setError(context.getString(R.string.field_is_required));
                 } else {
                     inputLayout.setErrorEnabled(false);
                 }
