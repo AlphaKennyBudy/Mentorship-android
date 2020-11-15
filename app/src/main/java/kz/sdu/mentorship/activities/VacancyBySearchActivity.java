@@ -12,6 +12,7 @@ import java.util.List;
 
 import kz.sdu.mentorship.adapters.JobsAdapter;
 import kz.sdu.mentorship.R;
+import kz.sdu.mentorship.fragments.HomeFragment;
 import kz.sdu.mentorship.models.Vacancy;
 
 public class VacancyBySearchActivity extends NavigationBarActivity implements JobsAdapter.OnJobListener {
@@ -33,7 +34,7 @@ public class VacancyBySearchActivity extends NavigationBarActivity implements Jo
     private void fetchVacanciesFromCategory(int position) {
         String jobName = SearchActivity.categories[position];
         vacancies = new ArrayList<>();
-        for (Vacancy vacancy: MainActivity.vacancies) {
+        for (Vacancy vacancy: HomeFragment.vacancies) {
             if (vacancy.getJobName().equals(jobName)) {
                 vacancies.add(vacancy);
             }

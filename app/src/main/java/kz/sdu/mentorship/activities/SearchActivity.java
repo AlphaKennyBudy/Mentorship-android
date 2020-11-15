@@ -14,11 +14,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import kz.sdu.mentorship.R;
+import kz.sdu.mentorship.fragments.HomeFragment;
 import kz.sdu.mentorship.models.Vacancy;
 
 public class SearchActivity extends NavigationBarActivity {
 
-    static ListView categoriesListView;
+    private ListView categoriesListView;
     public static String[] categories;
 
     @SuppressLint("MissingSuperCall")
@@ -29,7 +30,7 @@ public class SearchActivity extends NavigationBarActivity {
     }
 
     private void configureCategoriesList() {
-        if (MainActivity.vacancies == null) return;
+        if (HomeFragment.vacancies == null) return;
         if (categoriesListView != null && categoriesListView.getAdapter() == null && categories != null) {
             setAdapterToCategoriesView();
             return;
@@ -41,7 +42,7 @@ public class SearchActivity extends NavigationBarActivity {
 
     private void fetchCategoriesList() {
         Set<String> jobNames = new HashSet<>();
-        for (Vacancy vacancy: MainActivity.vacancies) {
+        for (Vacancy vacancy: HomeFragment.vacancies) {
             vacancy.setJobName(WordUtils.capitalizeFully(vacancy.getJobName()));
             jobNames.add(vacancy.getJobName());
         }

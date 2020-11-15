@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import java.util.Objects;
 
+import kz.sdu.mentorship.fragments.HomeFragment;
 import kz.sdu.mentorship.models.CompanyName;
 import kz.sdu.mentorship.models.EmployerId;
 import kz.sdu.mentorship.network.NetworkService;
@@ -47,11 +48,11 @@ public class VacancyDetailsActivity extends NavigationBarActivity {
 
     @SuppressLint("DefaultLocale")
     private void loadVacancy() {
-        if (MainActivity.vacancies == null || MainActivity.vacancies.isEmpty()) return;
+        if (HomeFragment.vacancies == null || HomeFragment.vacancies.isEmpty()) return;
 
         Vacancy vacancy = null;
-        if (source.equals(MainActivity.EXTRA_INFO)) {
-            vacancy = MainActivity.vacancies.get(vacancyId);
+        if (source.equals(HomeFragment.EXTRA_INFO)) {
+            vacancy = HomeFragment.vacancies.get(vacancyId);
         } else if (source.equals(VacancyBySearchActivity.EXTRA_INFO)) {
             vacancy = VacancyBySearchActivity.vacancies.get(vacancyId);
         }
@@ -60,6 +61,7 @@ public class VacancyDetailsActivity extends NavigationBarActivity {
         setDataToViews(vacancy);
     }
 
+    @SuppressLint("DefaultLocale")
     private void setDataToViews(Vacancy vacancy) {
         TextView jobName = findViewById(R.id.job_name);
         TextView companyName = findViewById(R.id.company_name);
