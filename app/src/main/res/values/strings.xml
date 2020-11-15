@@ -44,4 +44,6 @@
     <string name="login_password_incorrect">Login or password is incorrect!</string>
     <string name="passwords_not_match">Passwords do not match!</string>
     <string name="email_in_use">"Email is already in use!"</string>
+    <string name="forum">Forum</string>
+    <string name="messages">Messages</string>
 </resources>

@@ -7,10 +7,22 @@
         android:title="@string/home"/>
 
     <item
+        android:id="@+id/forum_item"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_people_24"
+        android:title="@string/forum"/>
+
+    <item
         android:id="@+id/search_item"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="@string/search"/>
+
+    <item
+        android:id="@+id/message_item"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_message_24"
+        android:title="@string/messages"/>
 
     <item
         android:id="@+id/profile_item"
