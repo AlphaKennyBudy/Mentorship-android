@@ -39,12 +39,12 @@ public class HomeFragment extends Fragment implements JobsAdapter.OnJobListener 
     private RecyclerView jobsList;
     private SwipeRefreshLayout swipeRefreshLayout;
     private Context context;
+    private boolean isDetached;
     public static final String EXTRA_INFO = "by_home";
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         context = view.getContext();
-
         if (vacancies == null) {
             fetchVacancies(view);
         } else if (jobsList == null) {
@@ -71,6 +71,7 @@ public class HomeFragment extends Fragment implements JobsAdapter.OnJobListener 
                 .enqueue(new Callback<List<Vacancy>>() {
                     @Override
                     public void onResponse(Call<List<Vacancy>> call, Response<List<Vacancy>> response) {
+                        if (isDetached) return;
                         vacancies = response.body();
                         if (vacancies == null) {
                             Toast.makeText(context, getString(R.string.connection_error), Toast.LENGTH_LONG).show();
@@ -88,24 +89,7 @@ public class HomeFragment extends Fragment implements JobsAdapter.OnJobListener 
 
                     @Override
                     public void onFailure(Call<List<Vacancy>> call, Throwable t) {
-                        Log.d("error", Objects.requireNonNull(t.getMessage()));
-                    }
-                });
-    }
-
-    private void fetchEmployers() {
-        NetworkService
-                .getInstance()
-                .getJSONApi()
-                .getAllEmployers()
-                .enqueue(new Callback<List<Employer>>() {
-                    @Override
-                    public void onResponse(Call<List<Employer>> call, Response<List<Employer>> response) {
-                        employers = response.body();
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<Employer>> call, Throwable t) {
+                        if (isDetached) return;
                         Log.d("error", Objects.requireNonNull(t.getMessage()));
                     }
                 });
@@ -161,5 +145,11 @@ public class HomeFragment extends Fragment implements JobsAdapter.OnJobListener 
                 fetchVacancies(view);
             }
         });
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.isDetached = true;
     }
 }
