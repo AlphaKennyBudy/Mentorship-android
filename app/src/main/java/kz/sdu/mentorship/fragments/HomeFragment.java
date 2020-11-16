@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +72,11 @@ public class HomeFragment extends Fragment implements JobsAdapter.OnJobListener 
                     @Override
                     public void onResponse(Call<List<Vacancy>> call, Response<List<Vacancy>> response) {
                         vacancies = response.body();
+                        if (vacancies == null) {
+                            Toast.makeText(context, getString(R.string.connection_error), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
                         createRecyclerPopularJobs(view);
                         createRecyclerNearbyJobs(view);
                         swipeRefreshLayout.setRefreshing(false);
