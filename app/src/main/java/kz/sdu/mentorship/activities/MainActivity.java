@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Objects;
 
 import kz.sdu.mentorship.fragments.HomeFragment;
+import kz.sdu.mentorship.fragments.SearchFragment;
 import kz.sdu.mentorship.models.Employer;
 import kz.sdu.mentorship.adapters.JobsAdapter;
 import kz.sdu.mentorship.network.NetworkService;
@@ -73,6 +74,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     fragment = new HomeFragment();
                 }
                 break;
+            case R.id.search_item:
+                if (lastItemId != R.id.search_item) {
+                    fragment = new SearchFragment();
+                }
         }
         lastItemId = item.getItemId();
         return loadFragment(fragment);

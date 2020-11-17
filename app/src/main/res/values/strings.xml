@@ -47,4 +47,10 @@
     <string name="forum">Forum</string>
     <string name="messages">Messages</string>
     <string name="connection_error">Something happened with connection! Swipe for refresh</string>
+    <string name="ui_design">UI Design</string>
+    <string name="product_management">Product Management</string>
+    <string name="android_development">Android Development</string>
+    <string name="ios_development">iOS Development</string>
+    <string name="web_development">Web Development</string>
+    <string name="data_science">Data Science</string>
 </resources>

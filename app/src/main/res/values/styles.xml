@@ -50,8 +50,25 @@
         <item name="cornerSize">@dimen/corner_radius_normal</item>
     </style>
 
+    <style name="Custom.ShapeAppearance.Medium" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">@dimen/corner_radius_medium</item>
+    </style>
+
     <style name="Custom.ShapeAppearance.Small" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerSize">@dimen/corner_radius_small</item>
+    </style>
+
+    <style name="Custom.Chip.Filter" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="checkedIconVisible">false</item>
+        <item name="shapeAppearanceOverlay">@style/Custom.ShapeAppearance.Medium</item>
+        <item name="android:layout_marginEnd">5dp</item>
+        <item name="chipStartPadding">15dp</item>
+        <item name="chipBackgroundColor">@color/custom_chip_state_bg</item>
+        <item name="chipStrokeWidth">1.5dp</item>
+        <item name="chipStrokeColor">@color/custom_chip_state_stroke</item>
+        <item name="android:textColor">@color/custom_chip_state_text</item>
+        <item name="chipEndPadding">15dp</item>
+        <item name="chipMinHeight">45dp</item>
     </style>
 
 </resources>
