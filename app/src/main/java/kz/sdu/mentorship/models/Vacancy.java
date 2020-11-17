@@ -24,6 +24,18 @@ public class Vacancy {
     @SerializedName("country")
     String country;
 
+    public Vacancy(String vacancyId, String employerId, String jobName, String dutyType, String requirements, int salary, String country, String city, int experience) {
+        this.vacancyId = vacancyId;
+        this.employerId = employerId;
+        this.jobName = jobName;
+        this.dutyType = dutyType;
+        this.requirements = requirements;
+        this.salary = salary;
+        this.country = country;
+        this.city = city;
+        this.experience = experience;
+    }
+
     @SerializedName("city")
     String city;
 
