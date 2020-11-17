@@ -29,17 +29,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <fragment
+            <include
                 android:id="@+id/search_bar"
-                android:name="kz.sdu.mentorship.fragments.SearchFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                layout="@layout/search_bar"
                 android:layout_marginStart="@dimen/margin_default"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="@dimen/margin_default"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_find_jobs" />
+                app:layout_constraintTop_toBottomOf="@+id/text_find_jobs"/>
 
             <TextView
                 android:id="@+id/text_categories"
