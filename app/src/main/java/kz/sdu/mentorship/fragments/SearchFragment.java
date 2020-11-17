@@ -57,7 +57,7 @@ public class SearchFragment extends Fragment implements JobsAdapter.OnJobListene
                 "Nothing", 40000, "Kazakhstan", "Almaty", 1));
         vacancies.add(new Vacancy("f493d12", "e12e56", "Product Management", "Half time",
                 "Nothing", 30000, "Kazakhstan", "Almaty", 1));
-        vacancies.add(new Vacancy("f493das", "e12e53", "Junior Front-end Developer", "Half time",
+        vacancies.add(new Vacancy("f493das", "e12e53", "Junior Front-end Developer Lol Kek Cheburek", "Half time",
                 "Nothing", 1000, "Kazakhstan", "Almaty", 1));
         return vacancies;
     }
