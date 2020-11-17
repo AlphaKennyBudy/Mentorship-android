@@ -10,10 +10,12 @@
     <color name="black">#000000</color>
     <color name="lightGrey">#f5f6f8</color>
     <color name="silver">#ECECEC</color>
+    <color name="silverGrey">#C1C1C1</color>
     <color name="grey">#999999</color>
     <color name="mediumGrey">#606060</color>
     <color name="darkGrey">#272727</color>
     <color name="whiteSmoke">#F5F5F5</color>
+    <color name="transparent">#80000000</color>
     <color name="transparentBlack">#66000000</color>
     <color name="red">#FF0000</color>
     <color name="lightRed">#D83131</color>
