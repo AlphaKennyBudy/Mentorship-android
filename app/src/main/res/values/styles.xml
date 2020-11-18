@@ -62,6 +62,28 @@
         <item name="cornerSize">@dimen/corner_radius_medium</item>
     </style>
 
+    <style name="Custom.ShapeAppearance.LeftRounded.Medium" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSizeTopLeft">@dimen/corner_radius_medium</item>
+        <item name="cornerSizeBottomLeft">@dimen/corner_radius_medium</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <style name="Custom.ShapeAppearance.RightRounded.Medium" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeTopRight">@dimen/corner_radius_medium</item>
+        <item name="cornerSizeBottomRight">@dimen/corner_radius_medium</item>
+    </style>
+
+    <style name="Custom.Button.LeftRounded" parent="Widget.MaterialComponents.Button">
+        <item name="shapeAppearance">@style/Custom.ShapeAppearance.LeftRounded.Medium</item>
+    </style>
+
+    <style name="Custom.Button.RightRounded" parent="Widget.MaterialComponents.Button">
+        <item name="shapeAppearance">@style/Custom.ShapeAppearance.RightRounded.Medium</item>
+    </style>
+
     <style name="Custom.ShapeAppearance.Small" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerSize">@dimen/corner_radius_small</item>
     </style>

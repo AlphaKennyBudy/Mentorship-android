@@ -10,6 +10,7 @@
     <color name="black">#000000</color>
     <color name="lightGrey">#f5f6f8</color>
     <color name="silver">#ECECEC</color>
+    <color name="silverWhite">#DDDDDD</color>
     <color name="silverGrey">#C1C1C1</color>
     <color name="grey">#999999</color>
     <color name="mediumGrey">#606060</color>

@@ -12,15 +12,21 @@ import android.view.ViewGroup;
 import android.view.ViewGroupOverlay;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,14 +62,32 @@ public class SearchFragment extends Fragment implements JobsAdapter.OnJobListene
         });
     }
 
+    // TODO: Split the function to multiple functions
     private void showFilterPopupWindow(View root, final ViewGroup container) {
         LayoutInflater inflater = (LayoutInflater)
                 context.getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.filter_popup, null);
+        final View popupView = inflater.inflate(R.layout.filter_popup, null);
         Spinner sortBySpinner = popupView.findViewById(R.id.sort_by_spinner);
         setAdapterToSpinner(sortBySpinner, R.array.sort_by_items);
         Spinner categorySpinner = popupView.findViewById(R.id.category_spinner);
         setAdapterToSpinner(categorySpinner, R.array.category_items);
+
+        MaterialButtonToggleGroup toggleButton = popupView.findViewById(R.id.work_type_toggle_group);
+        toggleButton.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
+            @Override
+            public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
+                MaterialButton cityButton = popupView.findViewById(R.id.city_button);
+                MaterialButton remoteButton = popupView.findViewById(R.id.remote_button);
+
+                if (checkedId == R.id.city_button) {
+                    makeButtonActive(cityButton);
+                    makeButtonInactive(remoteButton);
+                } else {
+                    makeButtonActive(remoteButton);
+                    makeButtonInactive(cityButton);
+                }
+            }
+        });
 
         applyDim(container, 0.5f);
         final PopupWindow popupWindow = new PopupWindow(
@@ -81,6 +105,18 @@ public class SearchFragment extends Fragment implements JobsAdapter.OnJobListene
                 clearDim(container);
             }
         });
+    }
+
+    private void makeButtonActive(MaterialButton button) {
+        button.setBackgroundColor(ContextCompat.getColor(context, R.color.black));
+        button.setTextColor(ContextCompat.getColor(context, R.color.white));
+        button.setStrokeColorResource(R.color.black);
+    }
+
+    private void makeButtonInactive(MaterialButton button) {
+        button.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
+        button.setTextColor(ContextCompat.getColor(context, R.color.black));
+        button.setStrokeColorResource(R.color.silverWhite);
     }
 
     public static void applyDim(@NonNull ViewGroup parent, float dimAmount){

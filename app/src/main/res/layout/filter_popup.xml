@@ -96,6 +96,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/categories_container" />
 
+    <LinearLayout
+        android:id="@+id/work_type_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location_text">
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/work_type_toggle_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:checkedButton="@id/city_button"
+            app:singleSelection="true">
+
+            <Button
+                android:id="@+id/city_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:strokeWidth="1.5dp"
+                app:strokeColor="@color/black"
+                android:paddingVertical="14dp"
+                android:stateListAnimator="@null"
+                style="@style/Custom.Button.LeftRounded"
+                android:text="@string/city"
+                />
+
+            <Button
+                android:id="@+id/remote_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:backgroundTint="@color/white"
+                app:strokeWidth="1.5dp"
+                app:strokeColor="@color/silverWhite"
+                android:stateListAnimator="@null"
+                android:textColor="@color/black"
+                android:paddingVertical="14dp"
+                style="@style/Custom.Button.RightRounded"
+                android:text="@string/remote"
+                />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+    </LinearLayout>
+
     <Button
         android:id="@+id/location_button"
         style="@style/Custom.Button.Outlined"
@@ -109,7 +158,7 @@
         app:icon="@drawable/ic_baseline_location_on_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location_text" />
+        app:layout_constraintTop_toBottomOf="@+id/work_type_container" />
 
     <Button
         android:layout_width="match_parent"
