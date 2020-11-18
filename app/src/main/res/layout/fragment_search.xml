@@ -13,7 +13,7 @@
         android:background="@color/backgroundColor">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/search_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <include
-            android:id="@+id/include"
+            android:id="@+id/search_bar"
             layout="@layout/search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,18 +34,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/search_text" />
 
 
         <HorizontalScrollView
-            android:id="@+id/horizontalScrollView2"
+            android:id="@+id/filter_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:scrollbars="none"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include">
+            app:layout_constraintTop_toBottomOf="@+id/search_bar">
 
             <com.google.android.material.chip.ChipGroup
                 android:layout_width="wrap_content"
@@ -101,6 +101,6 @@
             android:focusable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />
+            app:layout_constraintTop_toBottomOf="@+id/filter_scroll_view" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
