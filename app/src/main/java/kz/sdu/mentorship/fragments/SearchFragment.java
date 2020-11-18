@@ -1,10 +1,20 @@
 package kz.sdu.mentorship.fragments;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroupOverlay;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,19 +29,84 @@ import kz.sdu.mentorship.R;
 import kz.sdu.mentorship.adapters.JobsAdapter;
 import kz.sdu.mentorship.models.Vacancy;
 
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+
 public class SearchFragment extends Fragment implements JobsAdapter.OnJobListener {
     private RecyclerView jobsRecycler;
     private Context context;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         context = view.getContext();
         jobsRecycler = view.findViewById(R.id.rv_jobs);
         configureJobsRecycler();
+        createOnClickFilterListener(view, container);
         return view;
     }
+
+    public void createOnClickFilterListener(final View view, final ViewGroup container) {
+        Button filterButton = view.findViewById(R.id.filter_button);
+        filterButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                showFilterPopupWindow(view, container);
+            }
+        });
+    }
+
+    private void showFilterPopupWindow(View root, final ViewGroup container) {
+        LayoutInflater inflater = (LayoutInflater)
+                context.getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.filter_popup, null);
+        Spinner sortBySpinner = popupView.findViewById(R.id.sort_by_spinner);
+        setAdapterToSpinner(sortBySpinner, R.array.sort_by_items);
+        Spinner categorySpinner = popupView.findViewById(R.id.category_spinner);
+        setAdapterToSpinner(categorySpinner, R.array.category_items);
+
+        applyDim(container, 0.5f);
+        final PopupWindow popupWindow = new PopupWindow(
+                popupView,
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                true
+        );
+
+        popupWindow.showAtLocation(root, Gravity.BOTTOM, 0, 0);
+
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                clearDim(container);
+            }
+        });
+    }
+
+    public static void applyDim(@NonNull ViewGroup parent, float dimAmount){
+        Drawable dim = new ColorDrawable(Color.BLACK);
+        dim.setBounds(0, 0, parent.getWidth(), parent.getHeight());
+        dim.setAlpha((int) (255 * dimAmount));
+
+        ViewGroupOverlay overlay = parent.getOverlay();
+        overlay.add(dim);
+    }
+
+    public static void clearDim(@NonNull ViewGroup parent) {
+        ViewGroupOverlay overlay = parent.getOverlay();
+        overlay.clear();
+    }
+
+    private void setAdapterToSpinner(Spinner spinner, int listId) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                spinner.getContext(),
+                R.layout.spinner_item,
+                getResources().getStringArray(listId)
+        );
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+
 
     private void configureJobsRecycler() {
         List<Vacancy> dummyVacancies = generateDummyVacancies();

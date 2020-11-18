@@ -53,4 +53,21 @@
     <string name="ios_development">iOS Development</string>
     <string name="web_development">Web Development</string>
     <string name="data_science">Data Science</string>
+    <string name="filters">Filters</string>
+    <string name="sort_by">Sort by</string>
+    <string name="category">Category</string>
+    <string name="location">Location</string>
+
+
+    <string-array name="sort_by_items">
+        <item>Date</item>
+        <item>Salary ($$$ > $)</item>
+        <item>Salary ($ > $$$)</item>
+    </string-array>
+
+    <string-array name="category_items">
+        <item>UI/UX Design</item>
+        <item>Web Development</item>
+        <item>Data Science</item>
+    </string-array>
 </resources>

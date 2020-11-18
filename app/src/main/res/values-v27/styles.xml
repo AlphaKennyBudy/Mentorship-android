@@ -10,7 +10,7 @@
         <item name="android:textViewStyle">@style/Custom.TextView</item>
         <item name="bottomNavigationStyle">@style/Custom.BottomNavigationView</item>
         <item name="textAppearanceButton">@style/Custom.Button.TextAppearance</item>
-        <item name="shapeAppearanceSmallComponent">@style/Custom.ShapeAppearance.Normal</item>
+        <item name="shapeAppearanceSmallComponent">@style/Custom.ShapeAppearance.Medium</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>
     </style>

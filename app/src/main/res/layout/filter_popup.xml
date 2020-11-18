@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/custom_white_semi_top_rounded_card"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="20dp">
+
+    <TextView
+        android:id="@+id/filters_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/filters"
+        android:textSize="@dimen/font_larger"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <RelativeLayout
+        android:id="@+id/sort_by_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:background="@drawable/custom_normal_grey_rounded_card"
+        android:gravity="center_vertical"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filters_text">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_toStartOf="@id/sort_by_spinner"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/sort_by" />
+
+        <Spinner
+            android:id="@+id/sort_by_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:entries="@array/sort_by_items" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/categories_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:background="@drawable/custom_normal_grey_rounded_card"
+        android:gravity="center_vertical"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sort_by_container">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_toStartOf="@id/category_spinner"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/category" />
+
+        <Spinner
+            android:id="@+id/category_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:entries="@array/category_items" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/location_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/location"
+        android:textSize="@dimen/font_large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categories_container" />
+
+    <Button
+        android:id="@+id/location_button"
+        style="@style/Custom.Button.Outlined"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:paddingVertical="12dp"
+        android:text="Almaty, Kazakshtan"
+        app:icon="@drawable/ic_baseline_location_on_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location_text" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:text="@string/apply"
+        android:textSize="@dimen/font_semi_large"
+        android:textAllCaps="false"
+        android:paddingVertical="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location_button" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
