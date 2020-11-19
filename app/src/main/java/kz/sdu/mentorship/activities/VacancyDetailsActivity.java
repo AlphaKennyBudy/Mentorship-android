@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.Objects;
 
 import kz.sdu.mentorship.fragments.HomeFragment;
+import kz.sdu.mentorship.fragments.SearchFragment;
 import kz.sdu.mentorship.models.CompanyName;
 import kz.sdu.mentorship.models.EmployerId;
 import kz.sdu.mentorship.network.NetworkService;
@@ -48,13 +49,13 @@ public class VacancyDetailsActivity extends NavigationBarActivity {
 
     @SuppressLint("DefaultLocale")
     private void loadVacancy() {
-        if (HomeFragment.vacancies == null || HomeFragment.vacancies.isEmpty()) return;
+//        if (HomeFragment.vacancies == null || HomeFragment.vacancies.isEmpty()) return;
 
         Vacancy vacancy = null;
         if (source.equals(HomeFragment.EXTRA_INFO)) {
             vacancy = HomeFragment.vacancies.get(vacancyId);
-        } else if (source.equals(VacancyBySearchActivity.EXTRA_INFO)) {
-            vacancy = VacancyBySearchActivity.vacancies.get(vacancyId);
+        } else if (source.equals(SearchFragment.EXTRA_INFO)) {
+            vacancy = SearchFragment.vacancies.get(vacancyId);
         }
         if (vacancy == null) return;
 
@@ -70,7 +71,7 @@ public class VacancyDetailsActivity extends NavigationBarActivity {
         TextView dutyType = findViewById(R.id.duty_type);
         TextView jobDescription = findViewById(R.id.job_description);
 
-        getCompanyName(companyName, vacancy.getEmployerId());
+//        getCompanyName(companyName, vacancy.getEmployerId());
         jobName.setText(vacancy.getJobName());
         dutyType.setText(vacancy.getDutyType());
         jobDescription.setText(vacancy.getRequirements());

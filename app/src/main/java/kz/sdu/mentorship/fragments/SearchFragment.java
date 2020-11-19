@@ -1,6 +1,7 @@
 package kz.sdu.mentorship.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.sdu.mentorship.R;
+import kz.sdu.mentorship.activities.VacancyDetailsActivity;
 import kz.sdu.mentorship.adapters.JobsAdapter;
 import kz.sdu.mentorship.models.Vacancy;
 
@@ -39,6 +41,8 @@ import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class SearchFragment extends Fragment implements JobsAdapter.OnJobListener {
     private RecyclerView jobsRecycler;
+    public static List<Vacancy> vacancies;
+    public static final String EXTRA_INFO = "by_search";
     private Context context;
 
     @Nullable
@@ -157,6 +161,7 @@ public class SearchFragment extends Fragment implements JobsAdapter.OnJobListene
 
     private void configureJobsRecycler() {
         List<Vacancy> dummyVacancies = generateDummyVacancies();
+        vacancies = dummyVacancies;
         ArrayList<Integer> dummyImages = generateDummyImages(dummyVacancies.size());
 
         JobsAdapter jobsAdapter = new JobsAdapter(R.layout.nearby_job_list_item, dummyImages, dummyVacancies, this);
@@ -195,6 +200,9 @@ public class SearchFragment extends Fragment implements JobsAdapter.OnJobListene
 
     @Override
     public void onJobClick(int position) {
-        // TODO
+        Intent intent = new Intent(context, VacancyDetailsActivity.class);
+        intent.putExtra(VacancyDetailsActivity.EXTRA_INTENT, position);
+        intent.putExtra(VacancyDetailsActivity.EXTRA_SOURCE, EXTRA_INFO);
+        startActivity(intent);
     }
 }
