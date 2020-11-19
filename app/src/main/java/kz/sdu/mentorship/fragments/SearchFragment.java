@@ -200,7 +200,7 @@ public class SearchFragment extends Fragment implements JobsAdapter.OnJobListene
 
     @Override
     public void onJobClick(int position) {
-        Intent intent = new Intent(context, VacancyDetailsActivity.class);
+        Intent intent = new Intent(getActivity(), VacancyDetailsActivity.class);
         intent.putExtra(VacancyDetailsActivity.EXTRA_INTENT, position);
         intent.putExtra(VacancyDetailsActivity.EXTRA_SOURCE, EXTRA_INFO);
         startActivity(intent);

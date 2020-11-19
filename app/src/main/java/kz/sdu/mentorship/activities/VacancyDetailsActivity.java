@@ -11,6 +11,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Objects;
 
 import kz.sdu.mentorship.fragments.HomeFragment;
@@ -24,17 +27,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class VacancyDetailsActivity extends NavigationBarActivity {
+public class VacancyDetailsActivity extends AppCompatActivity {
     public static final String EXTRA_INTENT = "position";
     public static final String EXTRA_SOURCE = "by";
     private int vacancyId;
     private String source;
 
-    @SuppressLint("MissingSuperCall")
     @Override
-    protected final void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState, this, R.layout.activity_vacancy_details);
-
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_vacancy_details);
         Intent intent = getIntent();
         vacancyId = intent.getIntExtra(EXTRA_INTENT, 0);
         source = intent.getStringExtra(EXTRA_SOURCE);
