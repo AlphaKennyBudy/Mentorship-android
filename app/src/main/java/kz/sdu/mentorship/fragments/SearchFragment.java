@@ -89,6 +89,8 @@ public class SearchFragment extends Fragment implements JobsAdapter.OnJobListene
             }
         });
 
+
+
         applyDim(container, 0.5f);
         final PopupWindow popupWindow = new PopupWindow(
                 popupView,
@@ -96,6 +98,15 @@ public class SearchFragment extends Fragment implements JobsAdapter.OnJobListene
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 true
         );
+
+
+        Button closeButton = popupView.findViewById(R.id.close_button);
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
 
         popupWindow.showAtLocation(root, Gravity.BOTTOM, 0, 0);
 
