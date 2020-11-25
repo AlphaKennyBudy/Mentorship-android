@@ -34,6 +34,7 @@ public class ProfileFragment extends Fragment {
         initEducationRecyclerView(view);
         initExperienceRecyclerView(view);
         initAchievementsRecyclerView(view);
+        initLicensesRecyclerView(view);
         return view;
     }
 
@@ -117,6 +118,24 @@ public class ProfileFragment extends Fragment {
 
         setVerticalAdapter(achievementsView, titles, chips, timePeriods);
     }
+
+    private void initLicensesRecyclerView(View view) {
+        RecyclerView licensesView = view.findViewById(R.id.rv_licenses);
+
+        List<String> titles = new ArrayList<>();
+        titles.add("Driver License");
+
+        List<List<String>> chips = new ArrayList<>();
+        List<String> firstChips = new ArrayList<>();
+        firstChips.add("B category");
+        chips.add(firstChips);
+
+        List<String> timePeriods = new ArrayList<>();
+        timePeriods.add("Sep 2019");
+
+        setVerticalAdapter(licensesView, titles, chips, timePeriods);
+    }
+
 
 
 

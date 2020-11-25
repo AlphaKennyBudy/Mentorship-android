@@ -61,6 +61,7 @@
     <string name="skills">Skills</string>
     <string name="education">Education</string>
     <string name="achievements">Achievements</string>
+    <string name="licenses">Licenses</string>
 
 
     <string-array name="sort_by_items">
