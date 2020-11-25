@@ -58,6 +58,7 @@
     <string name="category">Category</string>
     <string name="location">Location</string>
     <string name="remote">Remote</string>
+    <string name="skills">Skills</string>
 
 
     <string-array name="sort_by_items">
