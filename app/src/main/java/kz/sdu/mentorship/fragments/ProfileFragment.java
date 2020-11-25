@@ -33,6 +33,7 @@ public class ProfileFragment extends Fragment {
         initSkillRecyclerView(view);
         initEducationRecyclerView(view);
         initExperienceRecyclerView(view);
+        initAchievementsRecyclerView(view);
         return view;
     }
 
@@ -98,6 +99,23 @@ public class ProfileFragment extends Fragment {
         timePeriods.add("May 2020 – Jun 2020");
 
         setVerticalAdapter(experienceView, titles, chips, timePeriods);
+    }
+
+    private void initAchievementsRecyclerView(View view) {
+        RecyclerView achievementsView = view.findViewById(R.id.rv_achievements);
+
+        List<String> titles = new ArrayList<>();
+        titles.add("Hackathon");
+
+        List<List<String>> chips = new ArrayList<>();
+        List<String> firstChips = new ArrayList<>();
+        firstChips.add("1st place");
+        chips.add(firstChips);
+
+        List<String> timePeriods = new ArrayList<>();
+        timePeriods.add("Mar 2019");
+
+        setVerticalAdapter(achievementsView, titles, chips, timePeriods);
     }
 
 
