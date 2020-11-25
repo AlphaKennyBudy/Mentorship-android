@@ -36,7 +36,7 @@ public class ProfileActivity extends NavigationBarActivity {
     @SuppressLint("MissingSuperCall")
     @Override
     protected final void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState, this, R.layout.activity_profile);
+        super.onCreate(savedInstanceState, this, R.layout.fragment_profile);
 
         if (user == null) {
             fetchData();
@@ -78,9 +78,9 @@ public class ProfileActivity extends NavigationBarActivity {
 
     private void setDataToViews() {
         TextView nameView = findViewById(R.id.full_name);
-        TextView locationView = findViewById(R.id.location);
-        TextView numberView = findViewById(R.id.number);
-        TextView emailView = findViewById(R.id.email);
+        TextView locationView = findViewById(R.id.description);
+        TextView numberView = findViewById(R.id.location);
+        TextView emailView = findViewById(R.id.education);
 
         nameView.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
         locationView.setText(String.format("%s, %s", user.getCity(), user.getCountry()));
@@ -114,10 +114,10 @@ public class ProfileActivity extends NavigationBarActivity {
     }
 
     private void setAdapter(Context context, String[] titles, int[] images, int[] colors) {
-        ProfileListAdapter listAdapter = new ProfileListAdapter(context, titles, images, colors);
-        ListView listView = findViewById(R.id.title_list);
-        listView.setAdapter(listAdapter);
-        setListenerToView(this, listView);
+//        ProfileListAdapter listAdapter = new ProfileListAdapter(context, titles, images, colors);
+//        ListView listView = findViewById(R.id.title_list);
+//        listView.setAdapter(listAdapter);
+//        setListenerToView(this, listView);
 
     }
 

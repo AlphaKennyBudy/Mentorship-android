@@ -68,7 +68,7 @@ public class VacancyDetailsActivity extends AppCompatActivity {
     private void setDataToViews(Vacancy vacancy) {
         TextView jobName = findViewById(R.id.job_name);
         TextView companyName = findViewById(R.id.company_name);
-        TextView location = findViewById(R.id.location);
+        TextView location = findViewById(R.id.description);
         TextView experience = findViewById(R.id.experience);
         TextView dutyType = findViewById(R.id.duty_type);
         TextView jobDescription = findViewById(R.id.job_description);
