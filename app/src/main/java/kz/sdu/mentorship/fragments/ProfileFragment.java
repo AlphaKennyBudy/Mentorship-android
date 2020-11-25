@@ -75,6 +75,7 @@ public class ProfileFragment extends Fragment {
     private void setVerticalAdapter(RecyclerView recyclerView, List<String> titles, List<List<String>> chips, List<String> timePeriods) {
         ProfileCardsAdapter cardsAdapter = new ProfileCardsAdapter(titles, chips, timePeriods);
         recyclerView.setAdapter(cardsAdapter);
+        recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
     }
 
