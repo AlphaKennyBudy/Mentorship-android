@@ -35,6 +35,7 @@ public class ProfileFragment extends Fragment {
         initExperienceRecyclerView(view);
         initAchievementsRecyclerView(view);
         initLicensesRecyclerView(view);
+        initLanguagesRecyclerView(view);
         return view;
     }
 
@@ -136,8 +137,33 @@ public class ProfileFragment extends Fragment {
         setVerticalAdapter(licensesView, titles, chips, timePeriods);
     }
 
+    private void initLanguagesRecyclerView(View view) {
+        RecyclerView languagesView = view.findViewById(R.id.rv_languages);
 
+        List<String> titles = new ArrayList<>();
+        titles.add("Russian");
+        titles.add("Kazakh");
+        titles.add("English");
 
+        List<List<String>> chips = new ArrayList<>();
+
+        List<String> firstChips = new ArrayList<>();
+        firstChips.add("Proficiency");
+
+        List<String> secondChips = new ArrayList<>();
+        secondChips.add("Native");
+
+        List<String> thirdChips = new ArrayList<>();
+        thirdChips.add("Pre-Intermediate");
+
+        chips.add(firstChips);
+        chips.add(secondChips);
+        chips.add(thirdChips);
+
+        List<String> timePeriods = new ArrayList<>();
+
+        setVerticalAdapter(languagesView, titles, chips, timePeriods);
+    }
 
     private List<Integer> generateDummyImages(int source, int count) {
         List<Integer> images = new ArrayList<>();

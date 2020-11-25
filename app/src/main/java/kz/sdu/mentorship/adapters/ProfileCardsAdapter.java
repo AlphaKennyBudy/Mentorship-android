@@ -73,7 +73,9 @@ public class ProfileCardsAdapter extends RecyclerView.Adapter<ProfileCardsAdapte
                 secondChip.setText(currentChips.get(1));
                 secondChip.setVisibility(View.VISIBLE);
             }
-            timeView.setText(timePeriods.get(position));
+            if (timePeriods.size() > position && timePeriods.get(position) != null) {
+                timeView.setText(timePeriods.get(position));
+            }
         }
     }
 }
