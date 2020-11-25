@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.sdu.mentorship.R;
+import kz.sdu.mentorship.adapters.ProfileCardsAdapter;
 import kz.sdu.mentorship.adapters.ProfileSkillsAdapter;
 
 public class ProfileFragment extends Fragment {
@@ -30,6 +31,7 @@ public class ProfileFragment extends Fragment {
         context = view.getContext();
         setDummyContent(view);
         initSkillRecyclerView(view);
+        initEducationRecyclerView(view);
         return view;
     }
 
@@ -39,6 +41,33 @@ public class ProfileFragment extends Fragment {
         ProfileSkillsAdapter skillsAdapter = new ProfileSkillsAdapter(skillImages);
         skillsView.setAdapter(skillsAdapter);
         skillsView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+    }
+
+    private void initEducationRecyclerView(View view) {
+        RecyclerView educationView = view.findViewById(R.id.rv_education);
+
+        List<String> titles = new ArrayList<>();
+        titles.add("Information Systems");
+        titles.add("Pupil");
+
+        List<List<String>> chips = new ArrayList<>();
+
+        List<String> firstChips = new ArrayList<>();
+        firstChips.add("GPA 3.95");
+        firstChips.add("Bachelor");
+
+        List<String> secondChips = new ArrayList<>();
+        firstChips.add("GPA 4");
+        chips.add(firstChips);
+        chips.add(secondChips);
+
+        List<String> timePeriods = new ArrayList<>();
+        timePeriods.add("2018 – Present");
+        timePeriods.add("2016 – 2018");
+
+        ProfileCardsAdapter cardsAdapter = new ProfileCardsAdapter(titles, chips, timePeriods);
+        educationView.setAdapter(cardsAdapter);
+        educationView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
     }
 
     private List<Integer> generateDummyImages(int source, int count) {
