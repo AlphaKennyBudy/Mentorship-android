@@ -32,6 +32,7 @@ public class ProfileFragment extends Fragment {
         setDummyContent(view);
         initSkillRecyclerView(view);
         initEducationRecyclerView(view);
+        initExperienceRecyclerView(view);
         return view;
     }
 
@@ -57,7 +58,7 @@ public class ProfileFragment extends Fragment {
         firstChips.add("Bachelor");
 
         List<String> secondChips = new ArrayList<>();
-        firstChips.add("GPA 4");
+        secondChips.add("GPA 4");
         chips.add(firstChips);
         chips.add(secondChips);
 
@@ -65,10 +66,41 @@ public class ProfileFragment extends Fragment {
         timePeriods.add("2018 – Present");
         timePeriods.add("2016 – 2018");
 
-        ProfileCardsAdapter cardsAdapter = new ProfileCardsAdapter(titles, chips, timePeriods);
-        educationView.setAdapter(cardsAdapter);
-        educationView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
+        setVerticalAdapter(educationView, titles, chips, timePeriods);
     }
+
+    private void setVerticalAdapter(RecyclerView recyclerView, List<String> titles, List<List<String>> chips, List<String> timePeriods) {
+        ProfileCardsAdapter cardsAdapter = new ProfileCardsAdapter(titles, chips, timePeriods);
+        recyclerView.setAdapter(cardsAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
+    }
+
+    private void initExperienceRecyclerView(View view) {
+        RecyclerView experienceView = view.findViewById(R.id.rv_experience);
+
+        List<String> titles = new ArrayList<>();
+        titles.add("Information Security");
+        titles.add("System Administrator");
+
+        List<List<String>> chips = new ArrayList<>();
+
+        List<String> firstChips = new ArrayList<>();
+        firstChips.add("Digital Generation");
+
+        List<String> secondChips = new ArrayList<>();
+        secondChips.add("Intern");
+
+        chips.add(firstChips);
+        chips.add(secondChips);
+
+        List<String> timePeriods = new ArrayList<>();
+        timePeriods.add("Jun 2020 – Aug 2020");
+        timePeriods.add("May 2020 – Jun 2020");
+
+        setVerticalAdapter(experienceView, titles, chips, timePeriods);
+    }
+
+
 
     private List<Integer> generateDummyImages(int source, int count) {
         List<Integer> images = new ArrayList<>();
