@@ -62,10 +62,8 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:minLines="1"
-                android:paddingStart="5dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="5dp"
-                android:paddingBottom="2dp"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
                 android:textColor="@color/mediumGrey"
                 android:textSize="@dimen/font_small"/>
 
@@ -79,10 +77,8 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:minLines="1"
-                android:paddingStart="5dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="5dp"
-                android:paddingBottom="2dp"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="3dp"
                 android:textColor="@color/mediumGrey"
                 android:textSize="@dimen/font_small" />
         </LinearLayout>
