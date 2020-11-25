@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 if (lastItemId != R.id.search_item) {
                     fragment = new SearchFragment();
                 }
+                break;
             case R.id.profile_item:
                 if (lastItemId != R.id.profile_item) {
                     fragment = new ProfileFragment();
