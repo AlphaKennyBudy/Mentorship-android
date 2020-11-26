@@ -1,11 +1,14 @@
 package kz.sdu.mentorship.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.sdu.mentorship.R;
+import kz.sdu.mentorship.activities.SettingsActivity;
 import kz.sdu.mentorship.adapters.ProfileCardsAdapter;
 import kz.sdu.mentorship.adapters.ProfileSkillsAdapter;
 
@@ -36,7 +40,19 @@ public class ProfileFragment extends Fragment {
         initAchievementsRecyclerView(view);
         initLicensesRecyclerView(view);
         initLanguagesRecyclerView(view);
+        setOnSettingsClickListener(view);
         return view;
+    }
+
+    private void setOnSettingsClickListener(View view) {
+        Button settingsButon = view.findViewById(R.id.settings_button);
+        settingsButon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initSkillRecyclerView(View view) {
