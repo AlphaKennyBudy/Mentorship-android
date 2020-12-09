@@ -34,7 +34,6 @@ import retrofit2.Response;
 
 public class HomeFragment extends Fragment implements JobsAdapter.OnJobListener {
     public static List<Vacancy> vacancies;
-    public static List<Employer> employers;
 
     private RecyclerView jobsList;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -57,10 +56,10 @@ public class HomeFragment extends Fragment implements JobsAdapter.OnJobListener 
 
     @Override
     public void onJobClick(int position) {
-//        Intent intent = new Intent(this, VacancyDetailsActivity.class);
-//        intent.putExtra(VacancyDetailsActivity.EXTRA_INTENT, position);
-//        intent.putExtra(VacancyDetailsActivity.EXTRA_SOURCE, EXTRA_INFO);
-//        startActivity(intent);
+        Intent intent = new Intent(getActivity(), VacancyDetailsActivity.class);
+        intent.putExtra(VacancyDetailsActivity.EXTRA_INTENT, position);
+        intent.putExtra(VacancyDetailsActivity.EXTRA_SOURCE, EXTRA_INFO);
+        startActivity(intent);
     }
 
     /**
