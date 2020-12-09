@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
@@ -31,11 +33,16 @@ import com.google.android.material.button.MaterialButtonToggleGroup;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import kz.sdu.mentorship.R;
 import kz.sdu.mentorship.activities.VacancyDetailsActivity;
 import kz.sdu.mentorship.adapters.JobsAdapter;
 import kz.sdu.mentorship.models.Vacancy;
+import kz.sdu.mentorship.network.NetworkService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
@@ -43,6 +50,7 @@ public class SearchFragment extends Fragment implements JobsAdapter.OnJobListene
     private RecyclerView jobsRecycler;
     public static List<Vacancy> vacancies;
     public static final String EXTRA_INFO = "by_search";
+    private boolean isDetached;
     private Context context;
 
     @Nullable
@@ -51,7 +59,11 @@ public class SearchFragment extends Fragment implements JobsAdapter.OnJobListene
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         context = view.getContext();
         jobsRecycler = view.findViewById(R.id.rv_jobs);
-        configureJobsRecycler();
+        if (vacancies == null) {
+            fetchVacancies();
+        } else {
+            configureJobsRecycler();
+        }
         createOnClickFilterListener(view, container);
         return view;
     }
@@ -158,35 +170,42 @@ public class SearchFragment extends Fragment implements JobsAdapter.OnJobListene
         spinner.setAdapter(adapter);
     }
 
+    private void fetchVacancies() {
+        NetworkService
+                .getInstance()
+                .getJSONApi()
+                .getAllVacancies()
+                .enqueue(new Callback<List<Vacancy>>() {
+                    @Override
+                    public void onResponse(Call<List<Vacancy>> call, Response<List<Vacancy>> response) {
+                        if (isDetached) return;
+
+                        vacancies = response.body();
+                        if (vacancies == null) {
+                            Toast.makeText(context, getString(R.string.connection_error), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        configureJobsRecycler();
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Vacancy>> call, Throwable t) {
+                        if (isDetached) return;
+                        Log.d("error", Objects.requireNonNull(t.getMessage()));
+                    }
+                });
+    }
 
     private void configureJobsRecycler() {
-        List<Vacancy> dummyVacancies = generateDummyVacancies();
-        vacancies = dummyVacancies;
-        ArrayList<Integer> dummyImages = generateDummyImages(dummyVacancies.size());
+        ArrayList<Integer> dummyImages = generateDummyImages(vacancies.size());
 
-        JobsAdapter jobsAdapter = new JobsAdapter(R.layout.nearby_job_list_item, dummyImages, dummyVacancies, this);
+        JobsAdapter jobsAdapter = new JobsAdapter(R.layout.nearby_job_list_item, dummyImages, vacancies, this);
         jobsRecycler.setAdapter(jobsAdapter);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         jobsRecycler.setLayoutManager(layoutManager);
         jobsRecycler.setHasFixedSize(true);
-    }
-
-    private List<Vacancy> generateDummyVacancies() {
-        List<Vacancy> vacancies = new ArrayList<>();
-        vacancies.add(new Vacancy("f493da2", "e12e34", "Android Developer", "Half time",
-                "Nothing", 25000, "Kazakhstan", "Almaty", 1));
-        vacancies.add(new Vacancy("f493da3", "e12e46", "iOS Developer", "Half time",
-                "Nothing", 200000, "Kazakhstan", "Almaty", 1));
-        vacancies.add(new Vacancy("f493da4", "e12e52", "Data Scientist", "Half time",
-                "Nothing", 400000, "Kazakhstan", "Almaty", 1));
-        vacancies.add(new Vacancy("f493d2d", "e12e52", "DL Engineer", "Half time",
-                "Nothing", 40000, "Kazakhstan", "Almaty", 1));
-        vacancies.add(new Vacancy("f493d12", "e12e56", "Product Management", "Half time",
-                "Nothing", 30000, "Kazakhstan", "Almaty", 1));
-        vacancies.add(new Vacancy("f493das", "e12e53", "Junior Front-end Developer Lol Kek Cheburek", "Half time",
-                "Nothing", 1000, "Kazakhstan", "Almaty", 1));
-        return vacancies;
     }
 
     private ArrayList<Integer> generateDummyImages(int vacanciesSize) {
@@ -204,5 +223,11 @@ public class SearchFragment extends Fragment implements JobsAdapter.OnJobListene
         intent.putExtra(VacancyDetailsActivity.EXTRA_INTENT, position);
         intent.putExtra(VacancyDetailsActivity.EXTRA_SOURCE, EXTRA_INFO);
         startActivity(intent);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.isDetached = true;
     }
 }
