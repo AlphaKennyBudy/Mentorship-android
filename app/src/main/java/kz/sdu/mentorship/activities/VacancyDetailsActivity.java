@@ -73,7 +73,7 @@ public class VacancyDetailsActivity extends AppCompatActivity {
         TextView dutyType = findViewById(R.id.duty_type);
         TextView jobDescription = findViewById(R.id.job_description);
 
-//        getCompanyName(companyName, vacancy.getEmployerId());
+        getCompanyName(companyName, vacancy.getEmployerId());
         jobName.setText(vacancy.getJobName());
         dutyType.setText(vacancy.getDutyType());
         jobDescription.setText(vacancy.getRequirements());
