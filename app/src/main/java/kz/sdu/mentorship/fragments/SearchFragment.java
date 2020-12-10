@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -62,10 +63,34 @@ public class SearchFragment extends Fragment implements JobsAdapter.OnJobListene
         if (vacancies == null) {
             fetchVacancies();
         } else {
-            configureJobsRecycler();
+            configureJobsRecycler(vacancies);
         }
+        configureSearchListener(view);
         createOnClickFilterListener(view, container);
         return view;
+    }
+
+    private void configureSearchListener(View view) {
+        SearchView searchView = view.findViewById(R.id.search_bar);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (vacancies == null) return false;
+                List<Vacancy> filteredVacancies = new ArrayList<>();
+                for (Vacancy vacancy: vacancies) {
+                    if (vacancy.getJobName().toLowerCase().contains(newText.toLowerCase().trim())) {
+                        filteredVacancies.add(vacancy);
+                    }
+                }
+                configureJobsRecycler(filteredVacancies);
+                return true;
+            }
+        });
     }
 
     public void createOnClickFilterListener(final View view, final ViewGroup container) {
@@ -104,7 +129,6 @@ public class SearchFragment extends Fragment implements JobsAdapter.OnJobListene
                 }
             }
         });
-
 
 
         applyDim(container, 0.5f);
@@ -186,7 +210,7 @@ public class SearchFragment extends Fragment implements JobsAdapter.OnJobListene
                             return;
                         }
 
-                        configureJobsRecycler();
+                        configureJobsRecycler(vacancies);
                     }
 
                     @Override
@@ -197,7 +221,7 @@ public class SearchFragment extends Fragment implements JobsAdapter.OnJobListene
                 });
     }
 
-    private void configureJobsRecycler() {
+    private void configureJobsRecycler(List<Vacancy> vacancies) {
         ArrayList<Integer> dummyImages = generateDummyImages(vacancies.size());
 
         JobsAdapter jobsAdapter = new JobsAdapter(R.layout.nearby_job_list_item, dummyImages, vacancies, this);
