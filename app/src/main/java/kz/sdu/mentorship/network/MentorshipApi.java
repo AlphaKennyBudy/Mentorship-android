@@ -24,7 +24,6 @@ public interface MentorshipApi {
     @GET("/employers")
     Call<List<Employer>> getAllEmployers();
 
-
     @POST("/vacancies/getCompanyName")
     Call<CompanyName> getCompanyName(@Body EmployerId employerId);
 
