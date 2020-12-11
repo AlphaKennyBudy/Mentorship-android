@@ -27,6 +27,10 @@ public class SettingsActivity extends AppCompatActivity {
             -1
     };
 
+    public void onBackButtonPressed(View view) {
+        finish();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
