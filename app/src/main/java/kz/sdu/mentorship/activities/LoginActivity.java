@@ -3,11 +3,14 @@ package kz.sdu.mentorship.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -23,7 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends NavigationBarActivity {
+public class LoginActivity extends AppCompatActivity {
     private final String LOGIN_KEY = "login";
     private final String PASSWORD_KEY = "password";
 
@@ -33,15 +36,14 @@ public class LoginActivity extends NavigationBarActivity {
     private TextInputEditText passwordEditText;
     private TextInputLayout passwordLayout;
 
-    @SuppressLint("MissingSuperCall")
+
     @Override
-    protected final void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState, this, R.layout.activity_login);
+    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
         sessionManager = new SessionManager(this);
         findViews();
         setEmptyListeners();
     }
-
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
