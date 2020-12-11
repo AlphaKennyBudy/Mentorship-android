@@ -20,9 +20,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginStart="20dp"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="5dp"
-            app:icon="@drawable/ic_baseline_arrow_back_dark_24"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="7dp"
+            app:icon="@drawable/ic_baseline_edit_18"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
