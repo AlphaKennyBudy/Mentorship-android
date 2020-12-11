@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -23,7 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegistrationActivity extends NavigationBarActivity {
+public class RegistrationActivity extends AppCompatActivity {
     private Button nextButton;
 
     private final String EMAIL_KEY = "email";
@@ -44,10 +46,10 @@ public class RegistrationActivity extends NavigationBarActivity {
     private EditText[] fields;
     private TextInputLayout[] layouts;
 
-    @SuppressLint("MissingSuperCall")
     @Override
     protected final void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState, this, R.layout.activity_registration);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_registration);
 
         findAllViews();
         setEmptyTextListeners();

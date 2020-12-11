@@ -1,6 +1,7 @@
 package kz.sdu.mentorship.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -29,7 +30,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegistrationLastStepActivity extends NavigationBarActivity {
+public class RegistrationLastStepActivity extends AppCompatActivity {
     private static final String[] countries = {"Kazakhstan", "Other"};
     private static final String[][] cities = {{
         "Almaty", "Nur-Sultan", "Pavlodar", "Aktobe", "Semey",
@@ -74,10 +75,11 @@ public class RegistrationLastStepActivity extends NavigationBarActivity {
     TextInputLayout[] layouts;
 
 
-    @SuppressLint("MissingSuperCall")
     @Override
     protected final void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState, this, R.layout.activity_registration_last_step);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_registration_last_step);
+
         sessionManager = new SessionManager(this);
         findAllViews();
         configureAutoCompleteViews();
@@ -131,9 +133,8 @@ public class RegistrationLastStepActivity extends NavigationBarActivity {
                 @Override
                 public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                     if (response.isSuccessful()) {
-                        ProfileActivity.user = response.body().getUser();
                         sessionManager.saveToken(response.body().getToken());
-                        makeIntent(ProfileActivity.class);
+                        makeIntent(MainActivity.class);
                     } else if (response.code() == 400) {
                         // TODO
                     }
