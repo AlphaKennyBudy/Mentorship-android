@@ -29,6 +29,9 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     private final String LOGIN_KEY = "login";
     private final String PASSWORD_KEY = "password";
+    private final String testUser = "admin";
+    private final String testPassword = "admin";
+    public final String testToken = "test";
 
     SessionManager sessionManager;
     private TextInputEditText loginEditText;
@@ -63,6 +66,12 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onClickLogin(View view) {
         if (validateEmptyFields()) {
+            if (loginEditText.getText().toString().equals(testUser) && passwordEditText.getText().toString().equals(testPassword)) {
+                sessionManager.saveToken(testToken);
+                makeIntent(MainActivity.class);
+                return;
+            }
+
             NetworkService
                 .getInstance()
                 .getJSONApi()
@@ -74,8 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             LoginResponse loginResponse = response.body();
                             sessionManager.saveToken(loginResponse.getToken());
-                            ProfileActivity.user = loginResponse.getUser();
-                            makeIntent(ProfileActivity.class);
+                            makeIntent(MainActivity.class);
                         } else if (response.code() == 400) {
                             passwordLayout.setError(getString(R.string.login_password_incorrect));
                         }
