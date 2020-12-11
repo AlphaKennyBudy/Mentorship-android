@@ -28,6 +28,7 @@ import kz.sdu.mentorship.adapters.JobsAdapter;
 import kz.sdu.mentorship.network.NetworkService;
 import kz.sdu.mentorship.R;
 import kz.sdu.mentorship.models.Vacancy;
+import kz.sdu.mentorship.network.SessionManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,6 +42,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (SessionManager.fetchToken(this) == null) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finishAffinity();
+            return;
+        }
         if (lastFragment == null) {
             lastFragment = new HomeFragment();
             lastItemId = R.id.home_item;
