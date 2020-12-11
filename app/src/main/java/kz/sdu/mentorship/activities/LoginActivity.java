@@ -38,8 +38,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
         sessionManager = new SessionManager(this);
         findViews();
         setEmptyListeners();
@@ -94,8 +96,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setEmptyListeners() {
-        RegistrationLastStepActivity.createEmptyTextListener(this, (EditText) loginEditText, loginLayout);
-        RegistrationLastStepActivity.createEmptyTextListener(this, (EditText) passwordEditText, passwordLayout);
+        RegistrationLastStepActivity.createEmptyTextListener(this, loginEditText, loginLayout);
+        RegistrationLastStepActivity.createEmptyTextListener(this, passwordEditText, passwordLayout);
     }
 
     private boolean validateEmptyFields() {
