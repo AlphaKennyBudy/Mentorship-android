@@ -88,6 +88,6 @@ lint/tmp/
 *.hprof
 
 # Travis
-keystore.jks
+*.jks
 
 app/release
