@@ -1,6 +1,4 @@
 language: android
-dist: trusty
-sudo: false
 jdk: oraclejdk8
 env:
   global:
@@ -17,6 +15,6 @@ android:
     - extra-android-m2repository
 before_install:
   - chmod +x gradlew
-  
+
 notifications:
   email: false
